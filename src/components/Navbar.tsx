@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Magnetic from "./Magnetic";
 
 const GithubIcon = ({ size = 20, className = "" }: { size?: number; className?: string }) => (
   <svg
@@ -155,28 +156,34 @@ export default function Navbar() {
 
             {/* Social Links (Desktop) */}
             <div className="hidden md:flex items-center space-x-4">
-              <a
-                href="https://github.com/ajaykrishnank2006"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-cyber-cyan transition-colors"
-              >
-                <GithubIcon size={18} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-zinc-400 hover:text-cyber-purple transition-colors"
-              >
-                <LinkedinIcon size={18} />
-              </a>
-              <a
-                href="mailto:ajaykrishnank2024@gmail.com"
-                className="text-zinc-400 hover:text-cyber-cyan transition-colors"
-              >
-                <Mail size={18} />
-              </a>
+              <Magnetic>
+                <a
+                  href="https://github.com/ajaykrishnank2006"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-cyber-cyan transition-colors"
+                >
+                  <GithubIcon size={18} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-cyber-purple transition-colors"
+                >
+                  <LinkedinIcon size={18} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="mailto:ajaykrishnank2024@gmail.com"
+                  className="text-zinc-400 hover:text-cyber-cyan transition-colors"
+                >
+                  <Mail size={18} />
+                </a>
+              </Magnetic>
             </div>
 
             {/* Mobile menu button */}

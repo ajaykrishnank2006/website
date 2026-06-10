@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Brain, Cpu, Smartphone, Flame } from "lucide-react";
+import TextReveal from "./TextReveal";
 
 const focusCards = [
   {
@@ -48,7 +49,7 @@ export default function About() {
                 / Who I Am
               </h2>
               <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Engineering the Future with AI
+                <TextReveal text="Engineering the Future with AI" />
               </h3>
             </motion.div>
 

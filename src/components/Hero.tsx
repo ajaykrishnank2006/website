@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight, Mail, FileText } from "lucide-react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import Magnetic from "./Magnetic";
 
 const GithubIcon = ({ size = 20, className = "" }: { size?: number; className?: string }) => (
   <svg
@@ -148,23 +149,27 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row justify-center lg:justify-start items-center gap-4 pt-4"
             >
-              <button
-                onClick={handleScrollToProjects}
-                className="group relative flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-blue px-6 font-semibold text-black shadow-lg shadow-cyber-cyan/10 transition-all duration-300 hover:shadow-cyber-cyan/30 hover:scale-[1.02]"
-              >
-                View Projects
-                <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
+              <Magnetic>
+                <button
+                  onClick={handleScrollToProjects}
+                  className="group relative flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-blue px-6 font-semibold text-black shadow-lg shadow-cyber-cyan/10 transition-all duration-300 hover:shadow-cyber-cyan/30 hover:scale-[1.02]"
+                >
+                  View Projects
+                  <ArrowUpRight size={18} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </button>
+              </Magnetic>
 
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02]"
-              >
-                <FileText size={18} className="text-cyber-cyan" />
-                Download CV
-              </a>
+              <Magnetic>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-12 w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:scale-[1.02]"
+                >
+                  <FileText size={18} className="text-cyber-cyan" />
+                  Download CV
+                </a>
+              </Magnetic>
             </motion.div>
 
             {/* Social Icons (Hero footer) */}
@@ -174,28 +179,34 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="flex justify-center lg:justify-start space-x-5 pt-6 text-zinc-500"
             >
-              <a
-                href="https://github.com/ajaykrishnank2006"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors duration-200"
-              >
-                <GithubIcon size={20} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-white transition-colors duration-200"
-              >
-                <LinkedinIcon size={20} />
-              </a>
-              <a
-                href="mailto:ajaykrishnank2024@gmail.com"
-                className="hover:text-white transition-colors duration-200"
-              >
-                <Mail size={20} />
-              </a>
+              <Magnetic>
+                <a
+                  href="https://github.com/ajaykrishnank2006"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  <GithubIcon size={20} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  <LinkedinIcon size={20} />
+                </a>
+              </Magnetic>
+              <Magnetic>
+                <a
+                  href="mailto:ajaykrishnank2024@gmail.com"
+                  className="hover:text-white transition-colors duration-200"
+                >
+                  <Mail size={20} />
+                </a>
+              </Magnetic>
             </motion.div>
           </div>
 

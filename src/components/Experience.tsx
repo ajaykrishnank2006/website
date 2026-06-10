@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Building2, Calendar, CheckCircle2, Users } from "lucide-react";
+import TextReveal from "./TextReveal";
 
 const achievements = [
   "Reduced manual verification time by 40% through automation pipelines",
@@ -29,7 +30,7 @@ export default function Experience() {
             / Professional Journey
           </h2>
           <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Where I&apos;ve Contributed
+            <TextReveal text="Where I've Contributed" />
           </h3>
         </motion.div>
 

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { GraduationCap, MapPin, BookOpen, Calendar } from "lucide-react";
+import TextReveal from "./TextReveal";
 
 const coreSubjects = [
   "Artificial Intelligence Foundations",
@@ -32,7 +33,7 @@ export default function Education() {
             / Academic Background
           </h2>
           <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Education Timeline
+            <TextReveal text="Education Timeline" />
           </h3>
         </motion.div>
 

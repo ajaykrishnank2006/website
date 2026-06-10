@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import TextReveal from "./TextReveal";
 import { Brain, Smartphone, Code2, Wrench } from "lucide-react";
 
 const skillCategories = [
@@ -63,7 +64,7 @@ export default function Skills() {
             / Stack & Capabilities
           </h2>
           <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            My Technical Arsenal
+            <TextReveal text="My Technical Arsenal" />
           </h3>
         </motion.div>
 

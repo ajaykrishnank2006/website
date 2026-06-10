@@ -8,21 +8,36 @@ import * as THREE from "three";
 function GeometricShape() {
   const meshRef = useRef<THREE.Mesh>(null);
   
-  // Slowly rotate the mesh as a backup animation
+  // Rotate and tilt the mesh based on time and mouse pointer position
   useFrame((state) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = state.clock.getElapsedTime() * 0.2;
-      meshRef.current.rotation.y = state.clock.getElapsedTime() * 0.15;
+      const elapsedTime = state.clock.getElapsedTime();
+      
+      // Target rotation maps to mouse pointer coordinates (-1 to 1) + time rotation
+      const targetRotationX = state.pointer.y * 0.6 + elapsedTime * 0.15;
+      const targetRotationY = state.pointer.x * 0.6 + elapsedTime * 0.15;
+      
+      // Lerp for fluid dynamic damping movement
+      meshRef.current.rotation.x = THREE.MathUtils.lerp(
+        meshRef.current.rotation.x,
+        targetRotationX,
+        0.05
+      );
+      meshRef.current.rotation.y = THREE.MathUtils.lerp(
+        meshRef.current.rotation.y,
+        targetRotationY,
+        0.05
+      );
     }
   });
 
   return (
-    <Float speed={3} rotationIntensity={1} floatIntensity={1.5}>
+    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
       <mesh ref={meshRef} scale={1.3}>
         <torusKnotGeometry args={[1, 0.35, 150, 16]} />
         <MeshDistortMaterial
           color="#8b5cf6"
-          distort={0.3}
+          distort={0.25}
           speed={1.5}
           roughness={0.2}
           metalness={0.9}

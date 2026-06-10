@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Mail, Send, CheckCircle } from "lucide-react";
 import { motion as motionFramer, AnimatePresence } from "framer-motion";
+import TextReveal from "./TextReveal";
 
 const GithubIcon = ({ size = 20, className = "" }: { size?: number; className?: string }) => (
   <svg
@@ -127,7 +128,7 @@ export default function Contact() {
             / Let&apos;s Connect
           </h2>
           <h3 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Get In Touch
+            <TextReveal text="Get In Touch" />
           </h3>
         </motionFramer.div>
 
