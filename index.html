@@ -1538,7 +1538,7 @@
           </div>
         </div>
 
-        <form class="contact-form" id="contact-form" onsubmit="event.preventDefault(); alert('Message simulation submitted successfully!');">
+        <form class="contact-form" id="contact-form">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" class="form-control" required placeholder="Enter your name">
@@ -1974,6 +1974,57 @@
         wrap.addEventListener("mouseleave", () => {
           wrap.style.transform = `translate(0px, 0px)`;
         });
+      });
+
+      /* ------------------------------------------
+         M. CONTACT FORM SUBMISSION (WEB3FORMS)
+         ------------------------------------------ */
+      const contactForm = document.getElementById("contact-form");
+      const submitBtn = contactForm.querySelector("button[type='submit']");
+
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        
+        const nameVal = document.getElementById("name").value;
+        const emailVal = document.getElementById("email").value;
+        const messageVal = document.getElementById("message").value;
+
+        if (!nameVal || !emailVal || !messageVal) return;
+
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+
+        try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({
+              access_key: "YOUR_WEB3FORMS_ACCESS_KEY", // <-- Enter your key here
+              name: nameVal,
+              email: emailVal,
+              message: messageVal,
+              subject: `New Portfolio Message from ${nameVal}`
+            })
+          });
+
+          const result = await response.json();
+          if (result.success) {
+            alert("Message sent successfully!");
+            contactForm.reset();
+          } else {
+            alert("Failed to send message: " + (result.message || "Please try again later."));
+          }
+        } catch (error) {
+          console.error(error);
+          alert("Network error. Please try again later.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText;
+        }
       });
     });
   </script>
