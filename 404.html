@@ -36,6 +36,15 @@
   </script>
 
   <style>
+    :root {
+      --bg-main: #1F2937;
+      --bg-card: #1E3A8A;
+      --accent-blue: #0EA5E9;
+      --accent-gold: #F59E0B;
+      --text-main: #F3F4F6;
+      --text-muted: #d1d5db;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -43,8 +52,8 @@
     }
 
     html {
-      background-color: #06070d;
-      color: #f1f5f9;
+      background-color: var(--bg-main);
+      color: var(--text-main);
       font-family: 'Inter', -apple-system, sans-serif;
       overflow-x: hidden;
     }
@@ -61,10 +70,10 @@
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #06070d;
+      background: var(--bg-main);
     }
     ::-webkit-scrollbar-thumb {
-      background: #00c6ff;
+      background: var(--accent-blue);
       border-radius: 4px;
     }
 
@@ -82,7 +91,7 @@
       width: 400px;
       height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 198, 255, 0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, transparent 70%);
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 9998;
@@ -97,9 +106,9 @@
       width: 100%;
       z-index: 1000;
       padding: 20px 0;
-      background: rgba(6, 7, 13, 0.85);
+      background: rgba(31, 41, 55, 0.85);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-container {
@@ -112,7 +121,7 @@
       font-size: 22px;
       font-weight: 700;
       text-decoration: none;
-      color: #00c6ff;
+      color: var(--accent-blue);
       letter-spacing: 1px;
       font-family: 'Space Grotesk', sans-serif;
     }
@@ -127,13 +136,13 @@
     .nav-link {
       font-size: 14px;
       font-weight: 500;
-      color: #94a3b8;
+      color: var(--text-muted);
       text-decoration: none;
       transition: color 0.2s ease;
     }
 
     .nav-link:hover {
-      color: #00c6ff;
+      color: var(--accent-blue);
     }
 
     .error-hero {
@@ -160,8 +169,8 @@
       position: relative;
       z-index: 10;
       max-width: 620px;
-      background: #0b0d17;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 56px 40px;
     }
@@ -176,11 +185,11 @@
       gap: 8px;
       list-style: none;
       font-size: 13px;
-      color: #94a3b8;
+      color: var(--text-muted);
     }
 
     .breadcrumb-item a {
-      color: #00c6ff;
+      color: var(--accent-blue);
       text-decoration: none;
     }
 
@@ -189,7 +198,7 @@
     }
 
     .breadcrumb-separator {
-      color: #475569;
+      color: var(--accent-gold);
     }
 
     .error-code {
@@ -197,7 +206,7 @@
       font-size: 84px;
       font-weight: 700;
       line-height: 1;
-      color: #00c6ff;
+      color: var(--accent-gold);
       margin-bottom: 16px;
     }
 
@@ -210,7 +219,7 @@
 
     .error-desc {
       font-size: 15px;
-      color: #94a3b8;
+      color: var(--text-muted);
       line-height: 1.6;
       margin-bottom: 32px;
     }
@@ -236,34 +245,34 @@
     }
 
     .btn-primary {
-      background: #00c6ff;
-      color: #06070d;
+      background: var(--accent-blue);
+      color: #ffffff;
     }
 
     .btn-primary:hover {
-      background: #33d1ff;
+      background: #38bdf8;
       transform: translateY(-2px);
     }
 
     .btn-secondary {
       background: transparent;
-      color: #f1f5f9;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .btn-secondary:hover {
-      border-color: #00c6ff;
-      color: #00c6ff;
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
       transform: translateY(-2px);
     }
 
     footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding: 28px 0;
       text-align: center;
-      background: #06070d;
+      background: var(--bg-main);
       font-size: 14px;
-      color: #94a3b8;
+      color: var(--text-muted);
       position: relative;
       z-index: 10;
     }
