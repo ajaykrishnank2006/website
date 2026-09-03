@@ -1,71 +1,59 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#07070f"/>
-      <stop offset="50%" stop-color="#0d0d1a"/>
-      <stop offset="100%" stop-color="#07070f"/>
+      <stop offset="0%" stop-color="#06070d"/>
+      <stop offset="50%" stop-color="#0b0d17"/>
+      <stop offset="100%" stop-color="#06070d"/>
     </linearGradient>
-    <linearGradient id="brand" x1="0%" y1="0%" x2="100%" y2="0%">
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#00c6ff"/>
-      <stop offset="100%" stop-color="#7b2ff7"/>
+      <stop offset="100%" stop-color="#0072ff"/>
     </linearGradient>
-    <radialGradient id="glow1" cx="20%" cy="30%" r="50%">
-      <stop offset="0%" stop-color="#00c6ff" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#07070f" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="glow2" cx="80%" cy="70%" r="50%">
-      <stop offset="0%" stop-color="#7b2ff7" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#07070f" stop-opacity="0"/>
+    <radialGradient id="glow" cx="30%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#00c6ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#06070d" stop-opacity="0"/>
     </radialGradient>
     <style>
-      .title { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 58px; fill: url(#brand); }
-      .role { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 32px; fill: #ffffff; }
+      .title { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 700; font-size: 60px; fill: #ffffff; }
+      .role { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 32px; fill: #00c6ff; }
       .desc { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 400; font-size: 22px; fill: #94a3b8; }
-      .tag { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 16px; fill: #00c6ff; letter-spacing: 2px; text-transform: uppercase; }
-      .badge { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 18px; fill: #e2e8f0; }
+      .tag { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 600; font-size: 15px; fill: #8b5cf6; letter-spacing: 3px; text-transform: uppercase; }
+      .badge { font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 17px; fill: #cbd5e1; }
     </style>
   </defs>
 
   <!-- Background -->
   <rect width="1200" height="630" fill="url(#bg)"/>
-  
-  <!-- Ambient Radial Glows -->
-  <circle cx="240" cy="190" r="400" fill="url(#glow1)"/>
-  <circle cx="960" cy="440" r="400" fill="url(#glow2)"/>
+  <circle cx="360" cy="240" r="450" fill="url(#glow)"/>
 
   <!-- Border Frame -->
-  <rect x="40" y="40" width="1120" height="550" rx="24" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
-  <rect x="39" y="39" width="1122" height="552" rx="25" fill="none" stroke="url(#brand)" stroke-width="1" opacity="0.3"/>
+  <rect x="40" y="40" width="1120" height="550" rx="20" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
 
-  <!-- Top Logo / Header Tag -->
-  <g transform="translate(100, 110)">
-    <rect x="0" y="0" width="64" height="64" rx="16" fill="url(#brand)"/>
-    <text x="32" y="42" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="26" fill="#ffffff" text-anchor="middle">AK</text>
-    <text x="88" y="38" class="tag">PORTFOLIO &amp; SHOWCASE</text>
+  <!-- Header -->
+  <g transform="translate(90, 105)">
+    <rect x="0" y="0" width="56" height="56" rx="14" fill="url(#cyanGrad)"/>
+    <text x="28" y="37" font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="24" fill="#ffffff" text-anchor="middle">AK</text>
+    <text x="80" y="34" class="tag">AI ENGINEER &amp; FLUTTER DEVELOPER</text>
   </g>
 
-  <!-- Main Content -->
-  <g transform="translate(100, 240)">
-    <text x="0" y="50" class="title">AJAY KRISHNAN K</text>
-    <text x="0" y="105" class="role">AI &amp; ML Engineer • Flutter Developer</text>
-    <text x="0" y="155" class="desc">Engineering Intelligent Systems, Deep Learning Models &amp; Cross-Platform Apps</text>
+  <!-- Title & Description -->
+  <g transform="translate(90, 230)">
+    <text x="0" y="48" class="title">AJAY KRISHNAN K</text>
+    <text x="0" y="100" class="role">Building Intelligent Systems &amp; Mobile Architectures</text>
+    <text x="0" y="148" class="desc">Specializing in Machine Learning, Computer Vision, and Cross-Platform Apps</text>
   </g>
 
-  <!-- Tech Tags & Footer info -->
-  <g transform="translate(100, 480)">
-    <!-- Pill 1 -->
-    <rect x="0" y="0" width="160" height="42" rx="21" fill="rgba(0,198,255,0.1)" stroke="rgba(0,198,255,0.3)" stroke-width="1"/>
-    <text x="80" y="26" class="badge" text-anchor="middle" fill="#00c6ff">Python &amp; ML</text>
+  <!-- Footer Pills -->
+  <g transform="translate(90, 475)">
+    <rect x="0" y="0" width="160" height="40" rx="20" fill="rgba(0,198,255,0.08)" stroke="rgba(0,198,255,0.25)" stroke-width="1"/>
+    <text x="80" y="25" class="badge" text-anchor="middle" fill="#00c6ff">Python &amp; ML</text>
 
-    <!-- Pill 2 -->
-    <rect x="176" y="0" width="160" height="42" rx="21" fill="rgba(123,47,247,0.1)" stroke="rgba(123,47,247,0.3)" stroke-width="1"/>
-    <text x="256" y="26" class="badge" text-anchor="middle" fill="#a78bfa">Flutter &amp; Dart</text>
+    <rect x="176" y="0" width="160" height="40" rx="20" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.25)" stroke-width="1"/>
+    <text x="256" y="25" class="badge" text-anchor="middle" fill="#a78bfa">Flutter &amp; Dart</text>
 
-    <!-- Pill 3 -->
-    <rect x="352" y="0" width="180" height="42" rx="21" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-    <text x="442" y="26" class="badge" text-anchor="middle" fill="#cbd5e1">Computer Vision</text>
+    <rect x="352" y="0" width="180" height="40" rx="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text x="442" y="25" class="badge" text-anchor="middle" fill="#94a3b8">Computer Vision</text>
 
-    <!-- Domain Pill -->
-    <text x="980" y="26" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="20" fill="#00c6ff" text-anchor="end">ajaykrishnank.com</text>
+    <text x="1020" y="25" font-family="'Space Grotesk', sans-serif" font-weight="600" font-size="19" fill="#00c6ff" text-anchor="end">ajaykrishnank.com</text>
   </g>
 </svg>
