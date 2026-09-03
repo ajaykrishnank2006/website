@@ -9,7 +9,7 @@
 - **Website**: https://ajaykrishnank.com (Deployment: https://ajay-gules.vercel.app)
 - **LinkedIn**: https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8
 - **GitHub**: https://github.com/ajaykrishnank2006
-- **Email**: ajaykrishnank2006@gmail.com
+- **Email**: ajaykrishnank2024@gmail.com
 
 ## Technical Specializations
 - **Artificial Intelligence & Machine Learning**: Python, TensorFlow, Scikit-learn, OpenCV, NumPy, Pandas, Random Forest classifiers, Computer Vision, MediaPipe gesture tracking, Neural Architectures.
@@ -40,5 +40,5 @@
 
 ## Contact & Collaboration
 Open to full-time engineering roles, AI research collaborations, and freelance mobile application consulting.
-- Email: ajaykrishnank2006@gmail.com
+- Email: ajaykrishnank2024@gmail.com
 - Resume/CV: https://ajaykrishnank.com/resume.pdf
