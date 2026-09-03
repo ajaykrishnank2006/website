@@ -167,14 +167,13 @@
       --bg-main: #06070d;
       --bg-card: #0b0d17;
       --border-card: rgba(255, 255, 255, 0.07);
-      --border-card-hover: rgba(0, 198, 255, 0.3);
       
       /* Primary Interactive Accent: Electric Cyan */
       --accent-cyan: #00c6ff;
       --accent-cyan-hover: #33d1ff;
       --accent-cyan-subtle: rgba(0, 198, 255, 0.08);
       
-      /* Secondary Highlight Accent: Deep Violet (Restrained) */
+      /* Secondary Highlight Accent: Deep Violet */
       --accent-violet: #8b5cf6;
       --accent-violet-subtle: rgba(139, 92, 246, 0.1);
 
@@ -247,27 +246,30 @@
     }
 
     /* ==========================================
-       2. REFINED ANIMATIONS & SPOTLIGHT
+       2. WOW-FACTOR ANIMATION ENGINE
        ========================================== */
+    
+    /* Scroll Progress Bar */
     #scroll-progress {
       position: fixed;
       top: 0;
       left: 0;
       width: 0%;
       height: 3px;
-      background: var(--accent-cyan);
+      background: linear-gradient(90deg, #00c6ff, #8b5cf6);
       z-index: 9999;
       transition: width 0.1s ease-out;
     }
 
+    /* Cursor Glow Background */
     #cursor-glow {
       position: fixed;
       top: 0;
       left: 0;
-      width: 360px;
-      height: 360px;
+      width: 400px;
+      height: 400px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 198, 255, 0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0, 198, 255, 0.08) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
       pointer-events: none;
       transform: translate(-50%, -50%);
       z-index: 9998;
@@ -275,9 +277,10 @@
       will-change: transform;
     }
 
+    /* Section Reveal (Fade Up) */
     .reveal-section {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(40px);
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -286,9 +289,61 @@
       transform: translateY(0);
     }
 
+    /* Hero Name Glitch Effect */
+    .glitch-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch-text {
+      position: relative;
+      color: #ffffff;
+    }
+
+    .glitch-text::before,
+    .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-main);
+      clip: rect(0, 0, 0, 0); 
+    }
+
+    .glitch-text.glitching::before {
+      left: 2px;
+      text-shadow: -2px 0 #00c6ff;
+      clip: rect(44px, 450px, 56px, 0);
+      animation: glitch-anim-1 0.2s linear infinite;
+      color: #ffffff;
+    }
+
+    .glitch-text.glitching::after {
+      left: -2px;
+      text-shadow: -2px 0 #8b5cf6;
+      clip: rect(85px, 450px, 140px, 0);
+      animation: glitch-anim-2 0.2s linear infinite;
+      color: #ffffff;
+    }
+
+    @keyframes glitch-anim-1 {
+      0% { clip: rect(10px, 9999px, 50px, 0); }
+      50% { clip: rect(30px, 9999px, 75px, 0); }
+      100% { clip: rect(5px, 9999px, 20px, 0); }
+    }
+
+    @keyframes glitch-anim-2 {
+      0% { clip: rect(65px, 9999px, 110px, 0); }
+      50% { clip: rect(85px, 9999px, 130px, 0); }
+      100% { clip: rect(40px, 9999px, 90px, 0); }
+    }
+
+    /* Typewriter Cursor */
     .typewriter-cursor {
       display: inline-block;
-      width: 2px;
+      width: 3px;
       height: 1em;
       background-color: var(--accent-cyan);
       margin-left: 4px;
@@ -301,7 +356,69 @@
       50% { opacity: 0; }
     }
 
-    /* Micro Breadcrumb */
+    /* Animated Card Border (Rotating Gradient) */
+    .rotating-border-card {
+      position: relative;
+      border-radius: 14px;
+      background: var(--bg-card);
+      overflow: hidden;
+      z-index: 1;
+      padding: 2px;
+      transition: transform 0.3s ease;
+    }
+
+    .rotating-border-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0deg, transparent 20%, #00c6ff, #8b5cf6, transparent 80%);
+      animation: rotate-border 6s linear infinite;
+      z-index: -2;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .rotating-border-card:hover::before {
+      opacity: 1;
+    }
+
+    .rotating-border-card::after {
+      content: '';
+      position: absolute;
+      inset: 2px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      z-index: -1;
+    }
+
+    @keyframes rotate-border {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Skill Badge Staggered Animations */
+    .skill-badge {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .skill-badge.reveal {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Magnetic Wrapper */
+    .magnetic-wrap {
+      display: inline-block;
+      transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    /* Micro Breadcrumbs Bar */
     .hero-breadcrumb {
       margin-bottom: 20px;
     }
@@ -313,7 +430,6 @@
       list-style: none;
       font-size: 13px;
       color: var(--text-muted);
-      font-family: var(--font-body);
     }
 
     .hero-breadcrumb a {
@@ -505,7 +621,6 @@
       line-height: 1.1;
       margin-bottom: 20px;
       font-weight: 700;
-      color: #ffffff;
     }
 
     .hero-role {
@@ -636,7 +751,7 @@
 
     .focus-card:hover {
       transform: translateY(-4px);
-      border-color: var(--border-card-hover);
+      border-color: var(--accent-cyan);
     }
 
     .card-icon {
@@ -742,21 +857,14 @@
       gap: 32px;
     }
 
-    .project-card {
+    .project-card-inner {
+      padding: 30px;
       background: var(--bg-card);
-      border: 1px solid var(--border-card);
       border-radius: 12px;
-      padding: 32px;
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.25s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--border-card-hover);
     }
 
     .project-header {
@@ -863,13 +971,11 @@
       font-size: 13px;
       font-weight: 500;
       color: var(--text-main);
-      transition: all 0.2s ease;
     }
 
     .skill-badge:hover {
       border-color: var(--accent-cyan);
       color: var(--accent-cyan);
-      transform: translateY(-2px);
     }
 
     .skill-icon {
@@ -1160,7 +1266,9 @@
       </nav>
 
       <span class="hero-tag">AI &amp; Mobile Engineer</span>
-      <h1 class="hero-title" id="glitch-title">AJAY KRISHNAN K</h1>
+      <div class="glitch-container">
+        <h1 class="hero-title glitch-text" id="glitch-title" data-text="AJAY KRISHNAN K">AJAY KRISHNAN K</h1>
+      </div>
       
       <div class="hero-role">
         Specializing in <span id="typewriter"></span><span class="typewriter-cursor"></span>
@@ -1171,26 +1279,36 @@
       </p>
       
       <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="resume.pdf" download="Ajay_Krishnan_CV.pdf" class="btn btn-secondary">Download CV</a>
+        <div class="magnetic-wrap">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+        </div>
+        <div class="magnetic-wrap">
+          <a href="resume.pdf" download="Ajay_Krishnan_CV.pdf" class="btn btn-secondary">Download CV</a>
+        </div>
       </div>
 
       <div class="hero-socials">
-        <a href="https://github.com/ajaykrishnank2006" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
-          <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile">
-          <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-          </svg>
-        </a>
-        <a href="mailto:ajaykrishnank2006@gmail.com" class="social-icon" aria-label="Send Email">
-          <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-        </a>
+        <div class="magnetic-wrap">
+          <a href="https://github.com/ajaykrishnank2006" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="magnetic-wrap">
+          <a href="https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+          </a>
+        </div>
+        <div class="magnetic-wrap">
+          <a href="mailto:ajaykrishnank2006@gmail.com" class="social-icon" aria-label="Send Email">
+            <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -1295,62 +1413,68 @@
 
       <div class="projects-grid">
         <!-- Project 1 -->
-        <div class="project-card">
-          <div>
-            <div class="project-header">
-              <span class="project-badge">Mobile Application</span>
-              <a href="https://github.com/ajaykrishnank2006/studybot" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="Smart Study Assistant GitHub Repository">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-              </a>
+        <div class="rotating-border-card tilt-card">
+          <div class="project-card-inner">
+            <div>
+              <div class="project-header">
+                <span class="project-badge">Mobile Application</span>
+                <a href="https://github.com/ajaykrishnank2006/studybot" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="Smart Study Assistant GitHub Repository">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                </a>
+              </div>
+              <h3 class="project-title">Smart Study Assistant</h3>
+              <p class="project-desc">An AI companion mobile app using OpenAI API to synthesize resources, generate summaries, and orchestrate interactive study cards.</p>
             </div>
-            <h3 class="project-title">Smart Study Assistant</h3>
-            <p class="project-desc">An AI companion mobile app using OpenAI API to synthesize resources, generate summaries, and orchestrate interactive study cards.</p>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Flutter</span>
-            <span class="project-tag">Firebase</span>
-            <span class="project-tag">OpenAI API</span>
-            <span class="project-tag">Riverpod</span>
+            <div class="project-tags">
+              <span class="project-tag">Flutter</span>
+              <span class="project-tag">Firebase</span>
+              <span class="project-tag">OpenAI API</span>
+              <span class="project-tag">Riverpod</span>
+            </div>
           </div>
         </div>
 
         <!-- Project 2 -->
-        <div class="project-card">
-          <div>
-            <div class="project-header">
-              <span class="project-badge">Computer Vision</span>
-              <a href="https://github.com/ajaykrishnank2006" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="Sign Language Detection GitHub Repository">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-              </a>
+        <div class="rotating-border-card tilt-card">
+          <div class="project-card-inner">
+            <div>
+              <div class="project-header">
+                <span class="project-badge">Computer Vision</span>
+                <a href="https://github.com/ajaykrishnank2006" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="Sign Language Detection GitHub Repository">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                </a>
+              </div>
+              <h3 class="project-title">Sign Language Detection</h3>
+              <p class="project-desc">A deep-learning vision engine classifying gestures. Maps coordinate nodes in real time to enable immediate sign language translation.</p>
             </div>
-            <h3 class="project-title">Sign Language Detection</h3>
-            <p class="project-desc">A deep-learning vision engine classifying gestures. Maps coordinate nodes in real time to enable immediate sign language translation.</p>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">Python</span>
-            <span class="project-tag">MediaPipe</span>
-            <span class="project-tag">OpenCV</span>
-            <span class="project-tag">Random Forest</span>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">MediaPipe</span>
+              <span class="project-tag">OpenCV</span>
+              <span class="project-tag">Random Forest</span>
+            </div>
           </div>
         </div>
 
         <!-- Project 3 -->
-        <div class="project-card">
-          <div>
-            <div class="project-header">
-              <span class="project-badge">Web Application</span>
-              <a href="https://github.com/ajaykrishnank2006/chat-bot" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="AI Chatbot GitHub Repository">
-                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-              </a>
+        <div class="rotating-border-card tilt-card">
+          <div class="project-card-inner">
+            <div>
+              <div class="project-header">
+                <span class="project-badge">Web Application</span>
+                <a href="https://github.com/ajaykrishnank2006/chat-bot" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="AI Chatbot GitHub Repository">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                </a>
+              </div>
+              <h3 class="project-title">AI Chatbot Interface</h3>
+              <p class="project-desc">A reactive, modern web chat interface mapping custom AI agents. Fast response rendering, dark theme, and streaming completion support.</p>
             </div>
-            <h3 class="project-title">AI Chatbot Interface</h3>
-            <p class="project-desc">A reactive, modern web chat interface mapping custom AI agents. Fast response rendering, dark theme, and streaming completion support.</p>
-          </div>
-          <div class="project-tags">
-            <span class="project-tag">TypeScript</span>
-            <span class="project-tag">React</span>
-            <span class="project-tag">HTML5</span>
-            <span class="project-tag">CSS3</span>
+            <div class="project-tags">
+              <span class="project-tag">TypeScript</span>
+              <span class="project-tag">React</span>
+              <span class="project-tag">HTML5</span>
+              <span class="project-tag">CSS3</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1583,7 +1707,7 @@
             <label for="message">Message</label>
             <textarea id="message" class="form-control" required placeholder="Describe your project or inquiry"></textarea>
           </div>
-          <div>
+          <div class="magnetic-wrap" style="align-self: flex-start;">
             <button type="submit" class="btn btn-primary">Send Message</button>
           </div>
         </form>
@@ -1598,10 +1722,15 @@
     </div>
   </footer>
 
+  <!-- ==========================================
+       13. FULL JAW-DROPPING ANIMATION ENGINE
+       ========================================== -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
-      // Scroll Progress Bar
+      /* ------------------------------------------
+         A. SCROLL PROGRESS BAR
+         ------------------------------------------ */
       const scrollProgress = document.getElementById("scroll-progress");
       if (scrollProgress) {
         window.addEventListener("scroll", () => {
@@ -1613,7 +1742,9 @@
         }, { passive: true });
       }
 
-      // Cursor Spotlight Glow
+      /* ------------------------------------------
+         B. CURSOR GLOW FOLLOW
+         ------------------------------------------ */
       const cursorGlow = document.getElementById("cursor-glow");
       let mouseX = 0, mouseY = 0;
       let glowX = 0, glowY = 0;
@@ -1633,7 +1764,31 @@
       }
       animateGlow();
 
-      // Typewriter Role Animator
+      /* ------------------------------------------
+         C. HERO NAME GLITCH EFFECT
+         ------------------------------------------ */
+      const glitchTitle = document.getElementById("glitch-title");
+      
+      function triggerGlitch() {
+        if (!glitchTitle) return;
+        glitchTitle.classList.add("glitching");
+        setTimeout(() => {
+          glitchTitle.classList.remove("glitching");
+        }, 250);
+      }
+
+      function scheduleGlitch() {
+        const delay = Math.random() * 3000 + 3000;
+        setTimeout(() => {
+          triggerGlitch();
+          scheduleGlitch();
+        }, delay);
+      }
+      if (glitchTitle) scheduleGlitch();
+
+      /* ------------------------------------------
+         D. TYPEWRITER WITH BLINKING CURSOR
+         ------------------------------------------ */
       const typewriterElement = document.getElementById("typewriter");
       const roles = ["Machine Learning Systems.", "Flutter Mobile Apps.", "Computer Vision Pipelines."];
       let roleIndex = 0;
@@ -1668,7 +1823,9 @@
       }
       if (typewriterElement) setTimeout(type, 800);
 
-      // Header Scroll Styling
+      /* ------------------------------------------
+         E. NAVBAR SCROLL BLUR + SHRINK
+         ------------------------------------------ */
       const header = document.getElementById("header");
       if (header) {
         window.addEventListener("scroll", () => {
@@ -1680,7 +1837,9 @@
         }, { passive: true });
       }
 
-      // Mobile Hamburger Navigation
+      /* ------------------------------------------
+         F. MOBILE NAV HAMBURGER MENU DRAWER
+         ------------------------------------------ */
       const hamburgerBtn = document.getElementById("hamburger-btn");
       const navDrawer = document.getElementById("nav-drawer");
       const drawerLinks = document.querySelectorAll(".drawer-link");
@@ -1701,37 +1860,82 @@
         });
       }
 
-      // Refined Subtle Background Particle Canvas
+      /* ------------------------------------------
+         G. DYNAMIC PARTICLE CANVAS (WITH MOUSE REPULSION)
+         ------------------------------------------ */
       const canvas = document.getElementById("particles-canvas");
       if (canvas) {
         const ctx = canvas.getContext("2d");
         let particlesArray = [];
-        const numberOfParticles = 40; // Quiet, deliberate count
+        const numberOfParticles = 110;
         let canvasWidth = canvas.offsetWidth;
         let canvasHeight = canvas.offsetHeight;
+
+        let mouse = {
+          x: null,
+          y: null,
+          radius: 120
+        };
+
+        window.addEventListener("mousemove", (e) => {
+          const rect = canvas.getBoundingClientRect();
+          mouse.x = e.clientX - rect.left;
+          mouse.y = e.clientY - rect.top;
+        }, { passive: true });
+
+        window.addEventListener("mouseleave", () => {
+          mouse.x = null;
+          mouse.y = null;
+        }, { passive: true });
 
         class Particle {
           constructor(x, y) {
             this.x = x;
             this.y = y;
-            this.size = Math.random() * 1.5 + 1;
-            this.vx = (Math.random() - 0.5) * 0.6;
-            this.vy = (Math.random() - 0.5) * 0.6;
+            this.size = Math.random() * 2 + 1;
+            this.vx = (Math.random() - 0.5) * 1.5;
+            this.vy = (Math.random() - 0.5) * 1.5;
           }
 
           draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255, 255, 255, 0.35)";
+            ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
             ctx.fill();
           }
 
           update() {
+            if (mouse.x !== null && mouse.y !== null) {
+              let dx = this.x - mouse.x;
+              let dy = this.y - mouse.y;
+              let distanceSq = dx * dx + dy * dy;
+              
+              if (distanceSq < 14400) { // 120 * 120
+                let distance = Math.sqrt(distanceSq);
+                let forceDirectionX = dx / (distance || 1);
+                let forceDirectionY = dy / (distance || 1);
+                let force = (mouse.radius - distance) / mouse.radius;
+                let directionX = forceDirectionX * force * 5;
+                let directionY = forceDirectionY * force * 5;
+                
+                this.vx += directionX;
+                this.vy += directionY;
+              }
+            }
+
+            this.vx *= 0.95;
+            this.vy *= 0.95;
+
+            this.vx += (Math.random() - 0.5) * 0.1;
+            this.vy += (Math.random() - 0.5) * 0.1;
+
             this.x += this.vx;
             this.y += this.vy;
 
-            if (this.x < 0 || this.x > canvasWidth) this.vx *= -1;
-            if (this.y < 0 || this.y > canvasHeight) this.vy *= -1;
+            if (this.x < 0) { this.x = 0; this.vx *= -1; }
+            if (this.x > canvasWidth) { this.x = canvasWidth; this.vx *= -1; }
+            if (this.y < 0) { this.y = 0; this.vy *= -1; }
+            if (this.y > canvasHeight) { this.y = canvasHeight; this.vy *= -1; }
           }
         }
 
@@ -1751,7 +1955,7 @@
         }
 
         function connectParticles() {
-          const maxDistance = 110;
+          const maxDistance = 90;
           const maxDistanceSq = maxDistance * maxDistance;
           for (let a = 0; a < particlesArray.length; a++) {
             for (let b = a + 1; b < particlesArray.length; b++) {
@@ -1762,7 +1966,7 @@
               if (distanceSq < maxDistanceSq) {
                 let distance = Math.sqrt(distanceSq);
                 let opacity = 1 - (distance / maxDistance);
-                ctx.strokeStyle = `rgba(0, 198, 255, ${opacity * 0.08})`;
+                ctx.strokeStyle = `rgba(0, 198, 255, ${opacity * 0.15})`;
                 ctx.lineWidth = 1;
                 ctx.beginPath();
                 ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -1792,7 +1996,37 @@
         animateParticles();
       }
 
-      // Section Reveal (Intersection Observer)
+      /* ------------------------------------------
+         H. PROJECT CARDS 3D PERSPECTIVE TILT
+         ------------------------------------------ */
+      const tiltCards = document.querySelectorAll(".tilt-card");
+      tiltCards.forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const maxRotate = 15;
+          const rotateX = ((centerY - y) / centerY) * maxRotate;
+          const rotateY = ((x - centerX) / centerX) * maxRotate;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }, { passive: true });
+
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+          card.style.transition = "transform 0.5s ease";
+        });
+
+        card.addEventListener("mouseenter", () => {
+          card.style.transition = "none";
+        });
+      });
+
+      /* ------------------------------------------
+         I. SECTION REVEAL (INTERSECTION OBSERVER)
+         ------------------------------------------ */
       const revealSections = document.querySelectorAll(".reveal-section");
       if (revealSections.length > 0) {
         const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -1809,7 +2043,9 @@
         });
       }
 
-      // Metrics Counter Animation
+      /* ------------------------------------------
+         J. METRICS COUNTER ANIMATION
+         ------------------------------------------ */
       const metricsSection = document.getElementById("experience");
       const metricNumbers = document.querySelectorAll(".metric-number");
       let countersTriggered = false;
@@ -1845,7 +2081,53 @@
         metricsObserver.observe(metricsSection);
       }
 
-      // Contact Form Handler (Web3Forms)
+      /* ------------------------------------------
+         K. SKILL BADGES FLOAT IN
+         ------------------------------------------ */
+      const skillsSection = document.getElementById("skills");
+      const skillBadges = document.querySelectorAll(".skill-badge");
+      let skillsTriggered = false;
+
+      if (skillsSection && skillBadges.length > 0) {
+        const skillsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !skillsTriggered) {
+              skillBadges.forEach((badge, index) => {
+                setTimeout(() => {
+                  badge.classList.add("reveal");
+                }, index * 80);
+              });
+              skillsTriggered = true;
+            }
+          });
+        }, { threshold: 0.2 });
+
+        skillsObserver.observe(skillsSection);
+      }
+
+      /* ------------------------------------------
+         L. MAGNETIC BUTTONS & SOCIALS
+         ------------------------------------------ */
+      const magneticWraps = document.querySelectorAll(".magnetic-wrap");
+      magneticWraps.forEach(wrap => {
+        wrap.addEventListener("mousemove", (e) => {
+          const rect = wrap.getBoundingClientRect();
+          const wrapX = rect.left + rect.width / 2;
+          const wrapY = rect.top + rect.height / 2;
+          const distanceX = e.clientX - wrapX;
+          const distanceY = e.clientY - wrapY;
+          const pullStrength = 0.35;
+          wrap.style.transform = `translate(${distanceX * pullStrength}px, ${distanceY * pullStrength}px)`;
+        }, { passive: true });
+
+        wrap.addEventListener("mouseleave", () => {
+          wrap.style.transform = `translate(0px, 0px)`;
+        });
+      });
+
+      /* ------------------------------------------
+         M. CONTACT FORM SUBMISSION (WEB3FORMS)
+         ------------------------------------------ */
       const contactForm = document.getElementById("contact-form");
       if (contactForm) {
         const submitBtn = contactForm.querySelector("button[type='submit']");
