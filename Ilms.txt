@@ -1,0 +1,44 @@
+# Ajay Krishnan K - AI & ML Engineer & Flutter Developer
+
+> Personal portfolio and professional context file for AI agents, LLMs, and search indexers.
+
+## Summary
+- **Name**: Ajay Krishnan K
+- **Role**: AI & Machine Learning Engineer & Cross-Platform Flutter Developer
+- **Location**: Kerala, India
+- **Website**: https://ajaykrishnank.com (Deployment: https://ajay-gules.vercel.app)
+- **LinkedIn**: https://www.linkedin.com/in/ajay-krishnan-k-1a37343a8
+- **GitHub**: https://github.com/ajaykrishnank2006
+- **Email**: ajaykrishnank2006@gmail.com
+
+## Technical Specializations
+- **Artificial Intelligence & Machine Learning**: Python, TensorFlow, Scikit-learn, OpenCV, NumPy, Pandas, Random Forest classifiers, Computer Vision, MediaPipe gesture tracking, Neural Architectures.
+- **Mobile & Front-End Development**: Flutter, Dart, Riverpod state management, Firebase, Modern HTML5, CSS3, ES6 JavaScript, Responsive UI.
+- **Tools & Ecosystem**: Git, Web3Forms, Vercel, RESTful APIs, OpenAI API integrations.
+
+## Professional Experience
+### AI/ML Intern | Linkmein Technologies Pvt. Ltd (Hyderabad, India)
+- Engineered automated transaction verification pipelines reducing verification bottlenecks by 40%.
+- Trained and tuned anomaly detection machine learning models achieving 90%+ classification accuracy.
+- Enhanced financial risk detection systems by 30%.
+
+## Key Projects
+1. **Smart Study Assistant** (`Flutter`, `Firebase`, `OpenAI API`, `Riverpod`)
+   - An intelligent study companion mobile application using OpenAI API to synthesize learning resources, generate summaries, and orchestrate interactive flashcard decks.
+   - GitHub: https://github.com/ajaykrishnank2006/studybot
+
+2. **Real-Time Sign Language Detection** (`Python`, `MediaPipe`, `OpenCV`, `Random Forest`)
+   - Computer vision deep learning engine that tracks hand coordinate nodes in real time to classify sign language gestures and output immediate translations.
+
+3. **AI Chatbot** (`TypeScript`, `React`, `HTML5`, `CSS3`)
+   - A reactive, modern web chat interface built for smooth interaction with custom AI models and streaming completions.
+   - GitHub: https://github.com/ajaykrishnank2006/chat-bot
+
+## Education
+- **Diploma in AI & ML**: Malabar Polytechnic Campus, Kerala, India. Focused on artificial intelligence, neural architectures, deep learning classifiers, and data structures.
+- **Higher Secondary Education (+2)**: Science & Computer Science specialization, Kerala, India.
+
+## Contact & Collaboration
+Open to full-time engineering roles, AI research collaborations, and freelance mobile application consulting.
+- Email: ajaykrishnank2006@gmail.com
+- Resume/CV: https://ajaykrishnank.com/resume.pdf
