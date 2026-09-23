@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://ajaykrishnank.com/sitemap.xml
-LLMs: https://ajaykrishnank.com/llms.txt

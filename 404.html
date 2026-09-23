@@ -153,16 +153,28 @@
       position: relative;
       padding-top: 100px;
       text-align: center;
+      background: 
+        radial-gradient(circle at 18% 24%, rgba(14, 165, 233, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 82% 78%, rgba(245, 158, 11, 0.05) 0%, transparent 48%),
+        radial-gradient(ellipse 75% 55% at 50% 0%, rgba(30, 58, 138, 0.38) 0%, transparent 75%),
+        var(--bg-main);
     }
 
-    #particles-canvas {
+    .error-hero::before {
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: auto;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 65% 65% at 50% 40%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 40%, black 20%, transparent 80%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .error-content {
@@ -296,8 +308,6 @@
   </header>
 
   <main class="error-hero">
-    <canvas id="particles-canvas"></canvas>
-
     <div class="container">
       <div class="error-content">
         <nav class="breadcrumb-nav" aria-label="Breadcrumb">
@@ -348,66 +358,6 @@
       }
       animateGlow();
 
-      const canvas = document.getElementById("particles-canvas");
-      if (canvas) {
-        const ctx = canvas.getContext("2d");
-        let particlesArray = [];
-        const numberOfParticles = 35;
-        let canvasWidth = canvas.offsetWidth;
-        let canvasHeight = canvas.offsetHeight;
-
-        class Particle {
-          constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.size = Math.random() * 1.5 + 1;
-            this.vx = (Math.random() - 0.5) * 0.8;
-            this.vy = (Math.random() - 0.5) * 0.8;
-          }
-
-          draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
-            ctx.fill();
-          }
-
-          update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            if (this.x < 0 || this.x > canvasWidth) this.vx *= -1;
-            if (this.y < 0 || this.y > canvasHeight) this.vy *= -1;
-          }
-        }
-
-        function initParticles() {
-          particlesArray = [];
-          for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle(Math.random() * canvasWidth, Math.random() * canvasHeight));
-          }
-        }
-
-        function resizeCanvas() {
-          canvasWidth = canvas.offsetWidth;
-          canvasHeight = canvas.offsetHeight;
-          canvas.width = canvasWidth;
-          canvas.height = canvasHeight;
-          initParticles();
-        }
-
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas, { passive: true });
-
-        function animateParticles() {
-          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-          for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
-          }
-          requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-      }
     });
   </script>
 </body>

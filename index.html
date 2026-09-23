@@ -15,7 +15,6 @@
   <!-- Branding & Favicons -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="favicon.svg">
-  <link rel="alternate" type="text/plain" title="LLMs Context File" href="llms.txt">
 
   <!-- OpenGraph / Social Share Media -->
   <meta property="og:site_name" content="Ajay Krishnan K Portfolio">
@@ -294,55 +293,29 @@
       transform: translateY(0);
     }
 
-    /* Hero Name Glitch Effect */
-    .glitch-container {
-      position: relative;
-      display: inline-block;
-    }
-
-    .glitch-text {
-      position: relative;
+    /* Hero Title Styling */
+    .hero-title {
+      font-size: 56px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
       color: #ffffff;
+      background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 60%, var(--accent-blue) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: heroTitleEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .glitch-text::before,
-    .glitch-text::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--bg-main);
-      clip: rect(0, 0, 0, 0); 
-    }
-
-    .glitch-text.glitching::before {
-      left: 2px;
-      text-shadow: -2px 0 var(--accent-blue);
-      clip: rect(44px, 450px, 56px, 0);
-      animation: glitch-anim-1 0.2s linear infinite;
-      color: #ffffff;
-    }
-
-    .glitch-text.glitching::after {
-      left: -2px;
-      text-shadow: -2px 0 var(--accent-gold);
-      clip: rect(85px, 450px, 140px, 0);
-      animation: glitch-anim-2 0.2s linear infinite;
-      color: #ffffff;
-    }
-
-    @keyframes glitch-anim-1 {
-      0% { clip: rect(10px, 9999px, 50px, 0); }
-      50% { clip: rect(30px, 9999px, 75px, 0); }
-      100% { clip: rect(5px, 9999px, 20px, 0); }
-    }
-
-    @keyframes glitch-anim-2 {
-      0% { clip: rect(65px, 9999px, 110px, 0); }
-      50% { clip: rect(85px, 9999px, 130px, 0); }
-      100% { clip: rect(40px, 9999px, 90px, 0); }
+    @keyframes heroTitleEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Typewriter Cursor */
@@ -592,16 +565,28 @@
       position: relative;
       overflow: hidden;
       padding-top: 100px;
+      background: 
+        radial-gradient(circle at 18% 24%, rgba(14, 165, 233, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 82% 78%, rgba(245, 158, 11, 0.05) 0%, transparent 48%),
+        radial-gradient(ellipse 75% 55% at 50% 0%, rgba(30, 58, 138, 0.38) 0%, transparent 75%),
+        var(--bg-main);
     }
 
-    #particles-canvas {
+    .hero-sec::before {
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: auto;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 65% 65% at 50% 40%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 65% 65% at 50% 40%, black 20%, transparent 80%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .hero-content {
@@ -619,13 +604,6 @@
       margin-bottom: 16px;
       font-weight: 600;
       display: block;
-    }
-
-    .hero-title {
-      font-size: 56px;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      font-weight: 700;
     }
 
     .hero-role {
@@ -824,33 +802,57 @@
       margin-bottom: 14px;
     }
 
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .metric-card {
-      text-align: center;
-      padding: 20px 12px;
+    .exp-highlights {
       background: var(--bg-main);
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid var(--border-card);
+      padding: 28px 24px;
     }
 
-    .metric-number {
+    .highlights-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 16px;
       font-family: var(--font-heading);
-      font-size: 32px;
-      font-weight: 700;
-      color: var(--accent-gold);
-      margin-bottom: 6px;
-      display: block;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .metric-label {
-      font-size: 12px;
+    .highlights-title::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+    }
+
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .exp-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.3;
+      line-height: 1.55;
+    }
+
+    .bullet-arrow {
+      color: var(--accent-blue);
+      font-size: 13px;
+      line-height: 1.55;
+      flex-shrink: 0;
     }
 
     /* ==========================================
@@ -1203,9 +1205,8 @@
       .hero-role {
         font-size: 20px;
       }
-      .metrics-grid {
-        grid-template-columns: 1fr;
-        gap: 12px;
+      .exp-highlights {
+        padding: 20px 16px;
       }
       .edu-header {
         flex-direction: column;
@@ -1259,8 +1260,6 @@
 
   <!-- Hero Section -->
   <section class="hero-sec" id="home">
-    <canvas id="particles-canvas" aria-hidden="true"></canvas>
-    
     <div class="container hero-content">
       <nav class="hero-breadcrumb" aria-label="Breadcrumb">
         <ol>
@@ -1271,9 +1270,7 @@
       </nav>
 
       <span class="hero-tag">AI &amp; ML Engineer</span>
-      <div class="glitch-container">
-        <h1 class="hero-title glitch-text" id="glitch-title" data-text="AJAY KRISHNAN K">AJAY KRISHNAN K</h1>
-      </div>
+      <h1 class="hero-title">AJAY KRISHNAN K</h1>
       
       <div class="hero-role">
         Specializing in <span id="typewriter"></span><span class="typewriter-cursor"></span>
@@ -1334,7 +1331,7 @@
             </svg>
           </div>
           <h3>Artificial Intelligence</h3>
-          <p>Designing advanced intelligent architectures, modeling classification systems, and creating cognitive pipelines.</p>
+          <p>Building real-time computer vision classifiers, gesture detection pipelines, and custom prediction models with Python and OpenCV.</p>
         </div>
 
         <div class="focus-card">
@@ -1364,7 +1361,7 @@
             </svg>
           </div>
           <h3>Emerging Tech</h3>
-          <p>Integrating modern LLM APIs, building autonomous agents, and applying advancements in computer vision.</p>
+          <p>Integrating production LLM APIs, building responsive chat applications, and deploying scalable services on the cloud.</p>
         </div>
       </div>
     </div>
@@ -1390,19 +1387,26 @@
           </p>
         </div>
 
-        <div class="metrics-grid">
-          <div class="metric-card">
-            <span class="metric-number" data-target="40">0</span>
-            <span class="metric-label">Reduced Verification Time</span>
-          </div>
-          <div class="metric-card">
-            <span class="metric-number" data-target="90">0</span>
-            <span class="metric-label">Model Accuracy Pushed</span>
-          </div>
-          <div class="metric-card">
-            <span class="metric-number" data-target="30">0</span>
-            <span class="metric-label">Improved Fraud Detection</span>
-          </div>
+        <div class="exp-highlights">
+          <h4 class="highlights-title">Key Contributions &amp; Impact</h4>
+          <ul class="exp-bullets">
+            <li>
+              <span class="bullet-arrow">▸</span>
+              <span>Engineered automated data preprocessing and transaction verification pipelines for financial analysis.</span>
+            </li>
+            <li>
+              <span class="bullet-arrow">▸</span>
+              <span>Trained and tuned anomaly detection classifiers using Scikit-learn to identify irregular transaction behaviors.</span>
+            </li>
+            <li>
+              <span class="bullet-arrow">▸</span>
+              <span>Refined feature engineering routines to improve classification precision and minimize false positive flags.</span>
+            </li>
+            <li>
+              <span class="bullet-arrow">▸</span>
+              <span>Collaborated with engineering teams to integrate model inference endpoints into internal verification services.</span>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1445,12 +1449,12 @@
             <div>
               <div class="project-header">
                 <span class="project-badge">Computer Vision</span>
-                <a href="https://github.com/ajaykrishnank2006" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="Sign Language Detection GitHub Repository">
+                <a href="https://github.com/ajaykrishnank2006/sign-language-detection" target="_blank" rel="noopener noreferrer" class="project-link-icon" aria-label="Sign Language Detection GitHub Repository">
                   <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" role="img" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
                 </a>
               </div>
               <h3 class="project-title">Sign Language Detection</h3>
-              <p class="project-desc">A deep-learning vision engine classifying gestures. Maps coordinate nodes in real time to enable immediate sign language translation.</p>
+              <p class="project-desc">A real-time hand gesture recognition system mapping 21 landmark nodes using MediaPipe, OpenCV, and Random Forest classification.</p>
             </div>
             <div class="project-tags">
               <span class="project-tag">Python</span>
@@ -1770,30 +1774,9 @@
       }
       animateGlow();
 
-      /* ------------------------------------------
-         C. HERO NAME GLITCH EFFECT
-         ------------------------------------------ */
-      const glitchTitle = document.getElementById("glitch-title");
-      
-      function triggerGlitch() {
-        if (!glitchTitle) return;
-        glitchTitle.classList.add("glitching");
-        setTimeout(() => {
-          glitchTitle.classList.remove("glitching");
-        }, 250);
-      }
-
-      function scheduleGlitch() {
-        const delay = Math.random() * 3000 + 3000;
-        setTimeout(() => {
-          triggerGlitch();
-          scheduleGlitch();
-        }, delay);
-      }
-      if (glitchTitle) scheduleGlitch();
 
       /* ------------------------------------------
-         D. TYPEWRITER WITH BLINKING CURSOR
+         C. TYPEWRITER WITH BLINKING CURSOR
          ------------------------------------------ */
       const typewriterElement = document.getElementById("typewriter");
       const roles = ["Machine Learning Systems.", "Flutter Mobile Apps.", "Computer Vision Pipelines."];
@@ -1830,7 +1813,7 @@
       if (typewriterElement) setTimeout(type, 800);
 
       /* ------------------------------------------
-         E. NAVBAR SCROLL BLUR + SHRINK
+         D. NAVBAR SCROLL BLUR + SHRINK
          ------------------------------------------ */
       const header = document.getElementById("header");
       if (header) {
@@ -1844,7 +1827,7 @@
       }
 
       /* ------------------------------------------
-         F. MOBILE NAV HAMBURGER MENU DRAWER
+         E. MOBILE NAV HAMBURGER MENU DRAWER
          ------------------------------------------ */
       const hamburgerBtn = document.getElementById("hamburger-btn");
       const navDrawer = document.getElementById("nav-drawer");
@@ -1867,143 +1850,7 @@
       }
 
       /* ------------------------------------------
-         G. DYNAMIC PARTICLE CANVAS (WITH MOUSE REPULSION)
-         ------------------------------------------ */
-      const canvas = document.getElementById("particles-canvas");
-      if (canvas) {
-        const ctx = canvas.getContext("2d");
-        let particlesArray = [];
-        const numberOfParticles = 110;
-        let canvasWidth = canvas.offsetWidth;
-        let canvasHeight = canvas.offsetHeight;
-
-        let mouse = {
-          x: null,
-          y: null,
-          radius: 120
-        };
-
-        window.addEventListener("mousemove", (e) => {
-          const rect = canvas.getBoundingClientRect();
-          mouse.x = e.clientX - rect.left;
-          mouse.y = e.clientY - rect.top;
-        }, { passive: true });
-
-        window.addEventListener("mouseleave", () => {
-          mouse.x = null;
-          mouse.y = null;
-        }, { passive: true });
-
-        class Particle {
-          constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.size = Math.random() * 2 + 1;
-            this.vx = (Math.random() - 0.5) * 1.5;
-            this.vy = (Math.random() - 0.5) * 1.5;
-          }
-
-          draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
-            ctx.fill();
-          }
-
-          update() {
-            if (mouse.x !== null && mouse.y !== null) {
-              let dx = this.x - mouse.x;
-              let dy = this.y - mouse.y;
-              let distanceSq = dx * dx + dy * dy;
-              
-              if (distanceSq < 14400) { // 120 * 120
-                let distance = Math.sqrt(distanceSq);
-                let forceDirectionX = dx / (distance || 1);
-                let forceDirectionY = dy / (distance || 1);
-                let force = (mouse.radius - distance) / mouse.radius;
-                let directionX = forceDirectionX * force * 5;
-                let directionY = forceDirectionY * force * 5;
-                
-                this.vx += directionX;
-                this.vy += directionY;
-              }
-            }
-
-            this.vx *= 0.95;
-            this.vy *= 0.95;
-
-            this.vx += (Math.random() - 0.5) * 0.1;
-            this.vy += (Math.random() - 0.5) * 0.1;
-
-            this.x += this.vx;
-            this.y += this.vy;
-
-            if (this.x < 0) { this.x = 0; this.vx *= -1; }
-            if (this.x > canvasWidth) { this.x = canvasWidth; this.vx *= -1; }
-            if (this.y < 0) { this.y = 0; this.vy *= -1; }
-            if (this.y > canvasHeight) { this.y = canvasHeight; this.vy *= -1; }
-          }
-        }
-
-        function initParticles() {
-          particlesArray = [];
-          for (let i = 0; i < numberOfParticles; i++) {
-            particlesArray.push(new Particle(Math.random() * canvasWidth, Math.random() * canvasHeight));
-          }
-        }
-
-        function handleParticles() {
-          for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-            particlesArray[i].draw();
-          }
-          connectParticles();
-        }
-
-        function connectParticles() {
-          const maxDistance = 90;
-          const maxDistanceSq = maxDistance * maxDistance;
-          for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a + 1; b < particlesArray.length; b++) {
-              let dx = particlesArray[a].x - particlesArray[b].x;
-              let dy = particlesArray[a].y - particlesArray[b].y;
-              let distanceSq = dx * dx + dy * dy;
-
-              if (distanceSq < maxDistanceSq) {
-                let distance = Math.sqrt(distanceSq);
-                let opacity = 1 - (distance / maxDistance);
-                ctx.strokeStyle = `rgba(14, 165, 233, ${opacity * 0.2})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                ctx.stroke();
-              }
-            }
-          }
-        }
-
-        function resizeCanvas() {
-          canvasWidth = canvas.offsetWidth;
-          canvasHeight = canvas.offsetHeight;
-          canvas.width = canvasWidth;
-          canvas.height = canvasHeight;
-          initParticles();
-        }
-
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas, { passive: true });
-
-        function animateParticles() {
-          ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-          handleParticles();
-          requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-      }
-
-      /* ------------------------------------------
-         H. PROJECT CARDS 3D PERSPECTIVE TILT
+         F. PROJECT CARDS 3D PERSPECTIVE TILT
          ------------------------------------------ */
       const tiltCards = document.querySelectorAll(".tilt-card");
       tiltCards.forEach(card => {
@@ -2031,7 +1878,7 @@
       });
 
       /* ------------------------------------------
-         I. SECTION REVEAL (INTERSECTION OBSERVER)
+         G. SECTION REVEAL (INTERSECTION OBSERVER)
          ------------------------------------------ */
       const revealSections = document.querySelectorAll(".reveal-section");
       if (revealSections.length > 0) {
@@ -2050,45 +1897,7 @@
       }
 
       /* ------------------------------------------
-         J. METRICS COUNTER ANIMATION
-         ------------------------------------------ */
-      const metricsSection = document.getElementById("experience");
-      const metricNumbers = document.querySelectorAll(".metric-number");
-      let countersTriggered = false;
-
-      function startCounters() {
-        metricNumbers.forEach(counter => {
-          const target = +counter.getAttribute("data-target");
-          let count = 0;
-          const duration = 1800;
-          const stepTime = Math.max(Math.floor(duration / target), 15);
-          
-          const timer = setInterval(() => {
-            count += 1;
-            counter.textContent = count + (target === 90 ? "%+" : "%");
-            if (count >= target) {
-              counter.textContent = target + (target === 90 ? "%+" : "%");
-              clearInterval(timer);
-            }
-          }, stepTime);
-        });
-      }
-
-      if (metricsSection && metricNumbers.length > 0) {
-        const metricsObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting && !countersTriggered) {
-              startCounters();
-              countersTriggered = true;
-            }
-          });
-        }, { threshold: 0.25 });
-
-        metricsObserver.observe(metricsSection);
-      }
-
-      /* ------------------------------------------
-         K. SKILL BADGES FLOAT IN
+         H. SKILL BADGES FLOAT IN
          ------------------------------------------ */
       const skillsSection = document.getElementById("skills");
       const skillBadges = document.querySelectorAll(".skill-badge");
@@ -2112,7 +1921,7 @@
       }
 
       /* ------------------------------------------
-         L. MAGNETIC BUTTONS & SOCIALS
+         I. MAGNETIC BUTTONS & SOCIALS
          ------------------------------------------ */
       const magneticWraps = document.querySelectorAll(".magnetic-wrap");
       magneticWraps.forEach(wrap => {
@@ -2132,7 +1941,7 @@
       });
 
       /* ------------------------------------------
-         M. CONTACT FORM SUBMISSION (WEB3FORMS)
+         J. CONTACT FORM SUBMISSION (WEB3FORMS)
          ------------------------------------------ */
       const contactForm = document.getElementById("contact-form");
       if (contactForm) {
