@@ -164,24 +164,24 @@
        ========================================== */
     :root {
       /* Dark Gray - Base background */
-      --bg-main: #1F2937;
+      --bg-main: #080711;
       
       /* Deep Indigo - Section backgrounds & cards */
-      --bg-card: #1E3A8A;
+      --bg-card: #17112B;
       --border-card: rgba(255, 255, 255, 0.12);
       
       /* Electric Blue - Buttons, CTAs, interactive */
-      --accent-blue: #0EA5E9;
-      --accent-blue-hover: #38bdf8;
-      --accent-blue-subtle: rgba(14, 165, 233, 0.15);
+      --accent-blue: #22D3EE;
+      --accent-blue-hover: #67E8F9;
+      --accent-blue-subtle: rgba(34, 211, 238, 0.14);
       
       /* Amber/Gold - Highlights & accent details */
-      --accent-gold: #F59E0B;
-      --accent-gold-subtle: rgba(245, 158, 11, 0.18);
+      --accent-gold: #C084FC;
+      --accent-gold-subtle: rgba(192, 132, 252, 0.16);
 
       /* Light Gray - Body text */
-      --text-main: #F3F4F6;
-      --text-muted: #d1d5db;
+      --text-main: #F8FAFC;
+      --text-muted: #B8B5C9;
       
       /* Typography */
       --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -1216,7 +1216,25 @@
         padding: 24px;
       }
     }
-  </style>
+  
+/* Premium rich visual system */
+html,body{background:#080711!important}
+.hero-sec{background:radial-gradient(circle at 12% 20%,rgba(34,211,238,.13),transparent 32%),radial-gradient(circle at 88% 28%,rgba(244,114,182,.10),transparent 28%),radial-gradient(ellipse 70% 55% at 50% 0%,rgba(124,58,237,.24),transparent 75%),#080711!important}
+.hero-title{background:linear-gradient(110deg,#fff 5%,#C4B5FD 42%,#67E8F9 78%,#F472B6 100%)!important;-webkit-background-clip:text!important;background-clip:text!important}
+.btn-primary{background:linear-gradient(135deg,#06B6D4,#7C3AED 58%,#DB2777)!important;border-color:transparent!important;box-shadow:0 8px 28px rgba(124,58,237,.28)}
+.btn-primary:hover{box-shadow:0 12px 38px rgba(34,211,238,.24),0 8px 30px rgba(219,39,119,.18)!important}
+.focus-card,.project-card,.skills-category,.edu-content,.contact-card,.contact-form{background:linear-gradient(145deg,rgba(23,17,43,.96),rgba(12,10,24,.94))!important;border-color:rgba(192,132,252,.14)!important}
+.focus-card:hover,.project-card:hover,.skills-category:hover,.edu-content:hover,.contact-card:hover,.contact-form:hover{border-color:rgba(34,211,238,.42)!important;box-shadow:0 20px 70px rgba(0,0,0,.38),0 0 45px rgba(124,58,237,.10)!important}
+.card-icon,.skill-icon{background:linear-gradient(135deg,rgba(34,211,238,.12),rgba(192,132,252,.12))!important;color:#67E8F9!important;border-color:rgba(34,211,238,.20)!important}
+.nav-link::after{background:linear-gradient(90deg,#22D3EE,#C084FC,#F472B6)!important}
+.nav-link:hover,.nav-link.active,.social-icon:hover{color:#67E8F9!important}
+.section-title::after{background:linear-gradient(90deg,#22D3EE,#8B5CF6,#F472B6)!important}
+#scroll-progress{background:linear-gradient(90deg,#22D3EE,#8B5CF6,#F472B6)!important}
+#cursor-glow{background:radial-gradient(circle,rgba(34,211,238,.14),rgba(139,92,246,.10) 38%,rgba(244,114,182,.06) 58%,transparent 72%)!important}
+.rotating-border-card::before{background:conic-gradient(from 0deg,transparent 15%,#22D3EE,#8B5CF6,#F472B6,transparent 82%)!important}
+::-webkit-scrollbar-track{background:#080711!important}
+::-webkit-scrollbar-thumb{background:linear-gradient(#22D3EE,#8B5CF6)!important}
+</style>
 </head>
 <body>
 
