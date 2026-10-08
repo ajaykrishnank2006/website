@@ -289,76 +289,10 @@
       z-index: 10;
     }
   </style>
-</head>
-<body>
-
-  <div id="cursor-glow"></div>
-
-  <header>
-    <div class="container nav-container">
-      <a href="/" class="logo">AK</a>
-      <ul class="nav-menu">
-        <li><a href="/#about" class="nav-link">About</a></li>
-        <li><a href="/#experience" class="nav-link">Experience</a></li>
-        <li><a href="/#projects" class="nav-link">Projects</a></li>
-        <li><a href="/#skills" class="nav-link">Skills</a></li>
-        <li><a href="/#contact" class="nav-link">Contact</a></li>
-      </ul>
-    </div>
-  </header>
-
-  <main class="error-hero">
-    <div class="container">
-      <div class="error-content">
-        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
-          <ol class="breadcrumb-list">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-separator">/</li>
-            <li class="breadcrumb-item" aria-current="page">404 Not Found</li>
-          </ol>
-        </nav>
-
-        <div class="error-code">404</div>
-        <h1 class="error-title">Page Not Found</h1>
-        <p class="error-desc">
-          The requested page could not be located. It may have been moved, renamed, or temporarily unavailable.
-        </p>
-
-        <div class="quick-links">
-          <a href="/" class="btn btn-primary">Return Home</a>
-          <a href="/#projects" class="btn btn-secondary">Explore Projects</a>
-          <a href="/#contact" class="btn btn-secondary">Get in Touch</a>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 Ajay Krishnan K. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const cursorGlow = document.getElementById("cursor-glow");
-      let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
-      document.addEventListener("mousemove", (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-      }, { passive: true });
-
-      function animateGlow() {
-        glowX += (mouseX - glowX) * 0.1;
-        glowY += (mouseY - glowY) * 0.1;
-        if (cursorGlow) {
-          cursorGlow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
-        }
-        requestAnimationFrame(animateGlow);
-      }
-      animateGlow();
-
-    });
-  </script>
-</body>
+<style>
+:root{--bg:#080711;--cyan:#22D3EE;--violet:#8B5CF6;--pink:#F472B6;--muted:#B8B5C9}
+html,body{margin:0;min-height:100%;background:radial-gradient(circle at 50% 20%,rgba(124,58,237,.25),transparent 35%),radial-gradient(circle at 15% 70%,rgba(34,211,238,.12),transparent 30%),#080711;color:#F8FAFC;font-family:Inter,system-ui,sans-serif}
+body{display:grid;place-items:center;overflow:hidden}.wrap{text-align:center;padding:30px;position:relative;z-index:2}.code{font:700 clamp(110px,22vw,250px)/.8 "Space Grotesk",sans-serif;letter-spacing:-.08em;background:linear-gradient(110deg,#fff,#C4B5FD 42%,#67E8F9 76%,#F472B6);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 45px rgba(139,92,246,.18));animation:float 4s ease-in-out infinite}.title{font:700 30px "Space Grotesk",sans-serif;margin:25px 0 10px}.sub{color:var(--muted);max-width:520px;margin:0 auto 30px;line-height:1.7}.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 21px;border-radius:10px;text-decoration:none;color:white;font-weight:600;background:linear-gradient(135deg,#06B6D4,#7C3AED 58%,#DB2777);box-shadow:0 12px 35px rgba(124,58,237,.25);transition:.3s}.btn:hover{transform:translateY(-3px);box-shadow:0 16px 45px rgba(34,211,238,.2)}.orb{position:absolute;width:300px;height:300px;border:1px solid rgba(34,211,238,.12);border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);animation:spin 14s linear infinite}.orb:before,.orb:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 22px var(--cyan);top:18px;left:50%}.orb:after{background:var(--pink);box-shadow:0 0 22px var(--pink);bottom:18px;top:auto;left:30%}@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}@keyframes float{50%{transform:translateY(-8px)}}@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head>
+<body><div class="orb"></div><main class="wrap"><div class="code">404</div><h1 class="title">Lost in the portfolio.</h1><p class="sub">The page you are looking for does not exist, moved, or took a wrong turn. Let’s get you back to the good stuff.</p><a class="btn" href="/">← Back to home</a></main></body>
 </html>
