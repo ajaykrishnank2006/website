@@ -1176,6 +1176,18 @@
     }
   
 
+/* Security: invisible bot trap */
+.hp-field{
+  position:absolute!important;
+  left:-10000px!important;
+  top:auto!important;
+  width:1px!important;
+  height:1px!important;
+  overflow:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+}
+
 /* Clean original visual direction */
 html,body{background:#FFF8EE!important}.hero-sec{background:#FFF8EE!important}.hero-title{background:none!important;-webkit-text-fill-color:#F8FAFC!important}.btn-primary{background:#2563EB!important;border:1px solid #E86A4A!important;box-shadow:0 8px 22px rgba(37,99,235,.18)!important}.btn-primary:hover{background:#1D4ED8!important;transform:translateY(-2px)}.section-title::after,.nav-link::after{background:#E86A4A!important}
 
@@ -1246,37 +1258,6 @@ input,textarea,select{background:#FFFCF7!important;color:#5E5149!important;borde
 input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shadow:0 0 0 3px rgba(232,106,74,.10)!important}
 .rotating-border-card{background:#FFFCF7!important;border-color:#E9DCCB!important}
 
-/* CV and warm motion layer */
-.cv-layout{display:grid;grid-template-columns:1.25fr .9fr;gap:28px;align-items:stretch}
-.cv-summary-card,.cv-stat{background:#FFFCF7;border:1px solid #E9DCCB;border-radius:18px;box-shadow:0 8px 30px rgba(117,86,60,.07)}
-.cv-summary-card{padding:38px;position:relative;overflow:hidden}
-.cv-summary-card::after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-90px;top:-90px;background:rgba(232,106,74,.09);transition:transform .6s ease}
-.cv-summary-card:hover::after{transform:scale(1.35)}
-.cv-label{font-size:11px;letter-spacing:2px;color:#C85A3D;font-weight:700}
-.cv-summary-card h3{font-size:34px;margin:12px 0;color:#59483F}
-.cv-summary-card p{max-width:600px;color:#806F64;line-height:1.75}
-.cv-meta{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
-.cv-meta span{padding:7px 11px;border-radius:999px;background:#FFF1E7;color:#8B624F;border:1px solid #F0D3C0;font-size:12px}
-.cv-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
-.cv-stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.cv-stat{padding:24px;display:flex;flex-direction:column;justify-content:center;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
-.cv-stat:hover{transform:translateY(-5px);border-color:#E8A06F;box-shadow:0 14px 34px rgba(117,86,60,.11)}
-.cv-stat strong{font-size:36px;color:#D46345;line-height:1}
-.cv-stat span{margin-top:9px;color:#806F64;font-size:13px;line-height:1.5}
-.reveal-section .focus-card,.reveal-section .project-card,.reveal-section .skills-category,.reveal-section .cv-summary-card,.reveal-section .cv-stat{transition:transform .7s cubic-bezier(.16,1,.3,1),opacity .7s ease,box-shadow .3s ease}
-.reveal-section:not(.active) .focus-card,.reveal-section:not(.active) .project-card,.reveal-section:not(.active) .skills-category,.reveal-section:not(.active) .cv-summary-card,.reveal-section:not(.active) .cv-stat{opacity:0;transform:translateY(28px)}
-.reveal-section.active .focus-card:nth-child(2),.reveal-section.active .project-card:nth-child(2),.reveal-section.active .cv-stat:nth-child(2){transition-delay:.08s}
-.reveal-section.active .focus-card:nth-child(3),.reveal-section.active .project-card:nth-child(3),.reveal-section.active .cv-stat:nth-child(3){transition-delay:.16s}
-.reveal-section.active .focus-card:nth-child(4),.reveal-section.active .project-card:nth-child(4),.reveal-section.active .cv-stat:nth-child(4){transition-delay:.24s}
-.btn{transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
-.btn:hover{transform:translateY(-3px)}
-.skill-badge{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
-.skill-badge:hover{transform:translateY(-4px);box-shadow:0 8px 20px rgba(117,86,60,.09)}
-.project-link-icon{transition:transform .25s ease,color .25s ease}
-.project-link-icon:hover{transform:translate(3px,-3px)}
-@media(max-width:800px){.cv-layout{grid-template-columns:1fr}.cv-stats{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.cv-summary-card{padding:26px}.cv-stats{grid-template-columns:1fr}.cv-summary-card h3{font-size:28px}}
-@media(prefers-reduced-motion:reduce){.reveal-section .focus-card,.reveal-section .project-card,.reveal-section .skills-category,.reveal-section .cv-summary-card,.reveal-section .cv-stat{opacity:1!important;transform:none!important}.btn,.skill-badge{transition:none!important}}
 </style>
 </head>
 <body>
@@ -1297,7 +1278,6 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#education" class="nav-link">Education</a></li>
-        <li></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
@@ -1768,18 +1748,20 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
           </div>
         </div>
 
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form" id="contact-form" novalidate>
+          <input type="text" id="website" name="website" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" id="form-start" name="form_start" value="">
           <div class="form-group">
             <label for="name">Your Name</label>
-            <input type="text" id="name" class="form-control" required placeholder="Enter your name">
+            <input type="text" id="name" name="name" class="form-control" required maxlength="80" autocomplete="name" placeholder="Enter your name">
           </div>
           <div class="form-group">
             <label for="email">Your Email</label>
-            <input type="email" id="email" class="form-control" required placeholder="Enter your email">
+            <input type="email" id="email" name="email" class="form-control" required maxlength="254" autocomplete="email" placeholder="Enter your email">
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" class="form-control" required placeholder="Describe your project or inquiry"></textarea>
+            <textarea id="message" name="message" class="form-control" required maxlength="4000" placeholder="Describe your project or inquiry"></textarea>
           </div>
           <div class="magnetic-wrap" style="align-self: flex-start;">
             <button type="submit" class="btn btn-primary">Send Message</button>
@@ -2006,57 +1988,85 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
       });
 
       /* ------------------------------------------
-         J. CONTACT FORM SUBMISSION (WEB3FORMS)
+         J. SECURE CONTACT FORM SUBMISSION
          ------------------------------------------ */
       const contactForm = document.getElementById("contact-form");
+      const formStart = document.getElementById("form-start");
+
       if (contactForm) {
+        if (formStart) formStart.value = String(Date.now());
+
         const submitBtn = contactForm.querySelector("button[type='submit']");
 
         contactForm.addEventListener("submit", async (e) => {
           e.preventDefault();
-          
-          const nameVal = document.getElementById("name").value;
-          const emailVal = document.getElementById("email").value;
-          const messageVal = document.getElementById("message").value;
 
-          if (!nameVal || !emailVal || !messageVal) return;
+          const nameEl = document.getElementById("name");
+          const emailEl = document.getElementById("email");
+          const messageEl = document.getElementById("message");
+          const honeypotEl = document.getElementById("website");
+
+          const nameVal = nameEl.value.trim();
+          const emailVal = emailEl.value.trim();
+          const messageVal = messageEl.value.trim();
+
+          if (honeypotEl && honeypotEl.value.trim()) return;
+
+          const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(emailVal);
+          if (nameVal.length < 2 || nameVal.length > 80) {
+            alert("Please enter a valid name.");
+            nameEl.focus();
+            return;
+          }
+          if (!emailOk || emailVal.length > 254) {
+            alert("Please enter a valid email address.");
+            emailEl.focus();
+            return;
+          }
+          if (messageVal.length < 10 || messageVal.length > 4000) {
+            alert("Please enter a message between 10 and 4000 characters.");
+            messageEl.focus();
+            return;
+          }
 
           const originalBtnText = submitBtn.textContent;
           submitBtn.disabled = true;
           submitBtn.textContent = "Sending...";
 
           try {
-            const response = await fetch("https://api.web3forms.com/submit", {
+            const response = await fetch("/api/contact", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                Accept: "application/json",
+                "Accept": "application/json"
               },
               body: JSON.stringify({
-                access_key: "49dccd4e-eb0b-48e1-ab77-88040db1be10",
                 name: nameVal,
                 email: emailVal,
                 message: messageVal,
-                subject: `New Portfolio Message from ${nameVal}`
+                form_start: formStart ? formStart.value : String(Date.now()),
+                website: honeypotEl ? honeypotEl.value : ""
               })
             });
 
             const result = await response.json();
-            if (result.success) {
+
+            if (response.ok && result.success) {
               alert("Message sent successfully!");
               contactForm.reset();
+              if (formStart) formStart.value = String(Date.now());
             } else {
-              alert("Failed to send message: " + (result.message || "Please try again later."));
+              alert(result.message || "Unable to send your message. Please try again later.");
             }
           } catch (error) {
-            console.error(error);
+            console.error("Contact form error:", error);
             alert("Network error. Please try again later.");
           } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
           }
         });
-      }
+      }}
     });
   </script>
 
