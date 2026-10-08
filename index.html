@@ -1297,7 +1297,7 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
         <li><a href="#projects" class="nav-link">Projects</a></li>
         <li><a href="#skills" class="nav-link">Skills</a></li>
         <li><a href="#education" class="nav-link">Education</a></li>
-        <li><a href="#cv" class="nav-link">CV</a></li>
+        <li></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
@@ -1316,7 +1316,6 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
     <a href="#projects" class="drawer-link">Projects</a>
     <a href="#skills" class="drawer-link">Skills</a>
     <a href="#education" class="drawer-link">Education</a>
-    <a href="#cv" class="drawer-link">CV</a>
     <a href="#contact" class="drawer-link">Contact</a>
   </nav>
 
@@ -1724,39 +1723,6 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
   </section>
 
 
-  <!-- CV Section -->
-  <section id="cv" class="reveal-section cv-section">
-    <div class="container">
-      <div class="section-title-wrap">
-        <span class="section-tag">Resume</span>
-        <h2 class="section-title">My CV</h2>
-      </div>
-      <div class="cv-layout">
-        <div class="cv-summary-card">
-          <span class="cv-label">AI/ML ENGINEER</span>
-          <h3>Ajay Krishnan K</h3>
-          <p>AI/ML Engineer focused on computer vision, machine learning systems, and mobile development.</p>
-          <div class="cv-meta">
-            <span>Palakkad, Kerala</span>
-            <span>AI/ML</span>
-            <span>Computer Vision</span>
-            <span>Flutter</span>
-          </div>
-          <div class="cv-actions">
-            <a href="resume.pdf" download="Ajay_Krishnan_CV.pdf" class="btn btn-primary">Download CV</a>
-            <a href="cv.html" class="btn btn-secondary">View CV</a>
-          </div>
-        </div>
-        <div class="cv-stats">
-          <div class="cv-stat"><strong data-count="40">0</strong><span>% faster signature verification</span></div>
-          <div class="cv-stat"><strong data-count="90">0</strong><span>%+ signature verification accuracy</span></div>
-          <div class="cv-stat"><strong data-count="30">0</strong><span>% improved fraud detection reliability</span></div>
-          <div class="cv-stat"><strong data-count="100">0</strong><span>+ documents processed daily</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact Section -->
   <section id="contact" class="reveal-section">
     <div class="container">
@@ -2094,23 +2060,5 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
     });
   </script>
 
-<script>
-document.addEventListener("DOMContentLoaded",()=>{
-  const counters=document.querySelectorAll("[data-count]");
-  const countObserver=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(!entry.isIntersecting)return;
-      const el=entry.target,target=Number(el.dataset.count),start=performance.now(),duration=1000;
-      const tick=now=>{
-        const p=Math.min((now-start)/duration,1),ease=1-Math.pow(1-p,3);
-        el.textContent=Math.round(target*ease);
-        if(p<1)requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick); countObserver.unobserve(el);
-    });
-  },{threshold:.5});
-  counters.forEach(el=>countObserver.observe(el));
-});
-</script>
 </body>
 </html>
