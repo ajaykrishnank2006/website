@@ -34,11 +34,9 @@
   <meta name="twitter:description" content="Explore AI/ML solutions, computer vision engines, and Flutter mobile applications engineered by Ajay Krishnan K.">
   <meta name="twitter:image" content="https://ajaykrishnank.com/og-image.svg">
 
-  <!-- System typography for a clean, original visual style -->
+  <!-- System typography -->
   </head>
 <body>
-<button id="back-to-top" class="floating-action" aria-label="Back to top">↑</button>
-<div id="page-toast" class="page-toast" role="status" aria-live="polite"></div>
 
   <!-- Scroll Progress Bar -->
   <div id="scroll-progress" aria-hidden="true"></div>
@@ -569,7 +567,32 @@
             scrollProgress.style.width = `${progress}%`;
           }
         }, { passive: true });
-      }/* ------------------------------------------
+      }
+
+      /* ------------------------------------------
+         B. CURSOR GLOW FOLLOW
+         ------------------------------------------ */
+      const cursorGlow = document.getElementById("cursor-glow");
+      let mouseX = 0, mouseY = 0;
+      let glowX = 0, glowY = 0;
+      
+      document.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      }, { passive: true });
+
+      function animateGlow() {
+        glowX += (mouseX - glowX) * 0.1;
+        glowY += (mouseY - glowY) * 0.1;
+        if (cursorGlow) {
+          cursorGlow.style.transform = `translate3d(${glowX}px, ${glowY}px, 0) translate(-50%, -50%)`;
+        }
+        requestAnimationFrame(animateGlow);
+      }
+      animateGlow();
+
+
+      /* ------------------------------------------
          C. TYPEWRITER WITH BLINKING CURSOR
          ------------------------------------------ */
       const typewriterElement = document.getElementById("typewriter");
@@ -787,5 +810,6 @@
         });
       }
     });
-  </script></body>
+  </script>
+</body>
 </html>
