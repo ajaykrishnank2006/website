@@ -225,6 +225,117 @@
       background: var(--accent-blue-hover);
     }
 
+    /* Theme Toggle */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      background: var(--bg-card);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-left: 16px;
+    }
+
+    .theme-toggle:hover {
+      color: var(--accent-blue);
+      border-color: var(--accent-blue);
+      transform: translateY(-1px);
+    }
+
+    .theme-toggle svg {
+      width: 19px;
+      height: 19px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .theme-icon-sun { display: none; }
+    html.dark-mode .theme-icon-moon { display: none; }
+    html.dark-mode .theme-icon-sun { display: block; }
+
+    /* Light theme */
+    :root {
+      --bg-main: #FFF8EE;
+      --bg-card: #FFFCF7;
+      --border-card: rgba(15, 23, 42, 0.12);
+      --text-main: #1F2937;
+      --text-muted: #4B5563;
+    }
+
+    html:not(.dark-mode) h1,
+    html:not(.dark-mode) h2,
+    html:not(.dark-mode) h3,
+    html:not(.dark-mode) h4,
+    html:not(.dark-mode) .font-heading,
+    html:not(.dark-mode) .section-title,
+    html:not(.dark-mode) .hero-title,
+    html:not(.dark-mode) .hero-role,
+    html:not(.dark-mode) .focus-card h3 {
+      color: #111827;
+    }
+
+    html:not(.dark-mode) .hamburger span {
+      background-color: #111827;
+    }
+
+    /* Dark theme */
+    html.dark-mode {
+      --bg-main: #0B1020;
+      --bg-card: #111827;
+      --border-card: rgba(255, 255, 255, 0.12);
+      --text-main: #F8FAFC;
+      --text-muted: #AAB4C3;
+      color-scheme: dark;
+    }
+
+    html.dark-mode body {
+      background: var(--bg-main);
+      color: var(--text-main);
+    }
+
+    html.dark-mode h1,
+    html.dark-mode h2,
+    html.dark-mode h3,
+    html.dark-mode h4,
+    html.dark-mode .font-heading,
+    html.dark-mode .section-title,
+    html.dark-mode .hero-title,
+    html.dark-mode .hero-role,
+    html.dark-mode .focus-card h3 {
+      color: #F8FAFC;
+    }
+
+    html.dark-mode .hero-sec {
+      background:
+        radial-gradient(circle at 18% 24%, rgba(14, 165, 233, 0.08) 0%, transparent 42%),
+        radial-gradient(circle at 82% 78%, rgba(245, 158, 11, 0.05) 0%, transparent 48%),
+        radial-gradient(ellipse 75% 55% at 50% 0%, rgba(30, 58, 138, 0.38) 0%, transparent 75%),
+        var(--bg-main);
+    }
+
+    html.dark-mode header.scrolled {
+      background: rgba(11, 16, 32, 0.9);
+    }
+
+    html.dark-mode .nav-drawer {
+      background: var(--bg-card);
+    }
+
+    @media (max-width: 768px) {
+      .theme-toggle {
+        margin-left: auto;
+        margin-right: 12px;
+      }
+    }
+
     /* Container & Layout */
     .container {
       max-width: 1140px;
@@ -1281,6 +1392,16 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
 
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8Z"></path>
+        </svg>
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+        </svg>
+      </button>
+
       <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation menu">
         <span></span>
         <span></span>
@@ -1297,6 +1418,15 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
     <a href="#skills" class="drawer-link">Skills</a>
     <a href="#education" class="drawer-link">Education</a>
     <a href="#contact" class="drawer-link">Contact</a>
+    <button class="theme-toggle" id="theme-toggle-mobile" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+      <svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.6 6.6 0 0 0 21 12.8Z"></path>
+      </svg>
+      <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+      </svg>
+    </button>
   </nav>
 
   <!-- Hero Section -->
@@ -1821,6 +1951,37 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
       }
       animateGlow();
 
+
+      /* ------------------------------------------
+         C. DARK MODE TOGGLE
+         ------------------------------------------ */
+      const themeToggle = document.getElementById("theme-toggle");
+      const mobileThemeToggle = document.getElementById("theme-toggle-mobile");
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const useDark = savedTheme ? savedTheme === "dark" : prefersDark;
+
+      function applyTheme(isDark) {
+        document.documentElement.classList.toggle("dark-mode", isDark);
+        [themeToggle, mobileThemeToggle].forEach(button => {
+          if (!button) return;
+          button.setAttribute("aria-pressed", String(isDark));
+          const label = isDark ? "Switch to light mode" : "Switch to dark mode";
+          button.setAttribute("aria-label", label);
+          button.setAttribute("title", label);
+        });
+      }
+
+      applyTheme(useDark);
+
+      [themeToggle, mobileThemeToggle].forEach(button => {
+        if (!button) return;
+        button.addEventListener("click", () => {
+          const isDark = !document.documentElement.classList.contains("dark-mode");
+          localStorage.setItem("theme", isDark ? "dark" : "light");
+          applyTheme(isDark);
+        });
+      });
 
       /* ------------------------------------------
          C. TYPEWRITER WITH BLINKING CURSOR
