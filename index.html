@@ -1565,6 +1565,245 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
       color: #FFFFFF !important;
     }
 
+
+    /* Mobile layout refinement */
+    @media (max-width: 768px) {
+      html, body {
+        width: 100%;
+        overflow-x: clip !important;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      header {
+        padding: 14px 0 !important;
+      }
+
+      header.scrolled {
+        padding: 10px 0 !important;
+      }
+
+      .nav-container {
+        gap: 10px;
+      }
+
+      .logo {
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+
+      .theme-toggle {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        margin: 0 2px 0 auto !important;
+        flex-shrink: 0;
+      }
+
+      .hamburger {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .hero-sec {
+        min-height: 100svh;
+        padding-top: 104px;
+        padding-bottom: 64px;
+      }
+
+      .hero-content {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .hero-breadcrumb {
+        margin-bottom: 16px;
+      }
+
+      .hero-tag, .section-tag {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+      }
+
+      .hero-title {
+        font-size: clamp(30px, 8.5vw, 40px) !important;
+        line-height: 1.08;
+        overflow-wrap: anywhere;
+        margin-bottom: 16px;
+      }
+
+      .hero-role {
+        height: auto;
+        min-height: 34px;
+        font-size: clamp(17px, 4.8vw, 21px) !important;
+        line-height: 1.45;
+        margin-bottom: 18px;
+      }
+
+      .hero-desc {
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .hero-buttons .magnetic-wrap {
+        width: 100%;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: 13px 18px;
+      }
+
+      .hero-socials {
+        gap: 22px;
+      }
+
+      section {
+        padding: 68px 0 !important;
+      }
+
+      .section-title-wrap {
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        font-size: clamp(26px, 7vw, 32px);
+        line-height: 1.2;
+      }
+
+      .about-grid,
+      .skills-grid,
+      .projects-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+        gap: 16px;
+      }
+
+      .focus-card,
+      .project-card,
+      .skills-category,
+      .edu-content,
+      .contact-card,
+      .contact-form {
+        min-width: 0;
+        padding: 24px 20px !important;
+        border-radius: 14px;
+      }
+
+      .focus-card p,
+      .project-card p,
+      .edu-desc,
+      .contact-card p {
+        font-size: 14px;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+      }
+
+      .edu-header {
+        align-items: flex-start;
+      }
+
+      .edu-title {
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .edu-date {
+        font-size: 13px;
+      }
+
+      .contact-item {
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
+
+      .form-control,
+      input,
+      textarea,
+      select {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px !important;
+      }
+
+      textarea {
+        min-height: 140px;
+      }
+
+      .contact-form .magnetic-wrap {
+        width: 100%;
+      }
+
+      .contact-form button[type="submit"] {
+        width: 100%;
+        min-height: 48px;
+      }
+
+      footer {
+        padding: 28px 0;
+      }
+
+      footer p {
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      #cursor-glow {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .container {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero-title {
+        font-size: 29px !important;
+      }
+
+      .hero-socials {
+        gap: 18px;
+      }
+
+      .nav-drawer {
+        width: min(280px, 86vw);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
 </style>
 </head>
 <body>
