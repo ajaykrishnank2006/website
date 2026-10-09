@@ -1707,6 +1707,33 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
     html.dark-mode #home .hero-tag, html.dark-mode #home #typewriter { color: #40d9f4 !important; }
     html.dark-mode #home .hero-role { color: #c2d2da !important; }
 
+
+/* Hero viewport and typewriter recovery */
+#home.hero-sec {
+  min-height: 100svh !important;
+  height: auto !important;
+  padding-top: clamp(150px, 18vh, 210px) !important;
+  padding-bottom: clamp(72px, 10vh, 120px) !important;
+  overflow: hidden !important;
+  scroll-margin-top: 90px;
+}
+#home .hero-content { position: relative !important; z-index: 2 !important; }
+#home .hero-breadcrumb { margin-bottom: 24px !important; }
+#home .hero-title {
+  margin-top: 22px !important;
+  margin-bottom: 24px !important;
+  line-height: 1.08 !important;
+  overflow: visible !important;
+  transform: none !important;
+  clip-path: none !important;
+}
+#home .hero-role { display:block !important; min-height: 1.7em !important; }
+#home #typewriter { display:inline !important; opacity:1 !important; visibility:visible !important; }
+@media (max-width:768px) {
+  #home.hero-sec { padding-top: 130px !important; min-height: 90svh !important; }
+  #home .hero-title { font-size: clamp(38px, 10vw, 62px) !important; overflow-wrap: anywhere; }
+}
+
 </style>
 </head>
 <body>
@@ -2776,6 +2803,18 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
   function draw(){if(document.hidden){raf=requestAnimationFrame(draw);return;}ctx.clearRect(0,0,w,h);for(let i=0;i<points.length;i++){const p=points[i];p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(19,198,232,.65)';ctx.fill();for(let j=i+1;j<points.length;j++){const q=points[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.strokeStyle='rgba(19,198,232,'+((1-d/100)*.13)+')';ctx.lineWidth=.7;ctx.stroke();}}}raf=requestAnimationFrame(draw);}
   resize();window.addEventListener('resize',resize,{passive:true});document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelAnimationFrame(raf);else raf=requestAnimationFrame(draw);});raf=requestAnimationFrame(draw);
 })();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const typed = document.getElementById('typewriter');
+  if (!typed) return;
+  if (!typed.textContent.trim()) typed.textContent = 'Machine Learning Systems.';
+  // Keep fallback visible if the legacy typewriter timer failed to initialize.
+  window.setTimeout(() => {
+    if (!typed.textContent.trim()) typed.textContent = 'Machine Learning Systems.';
+  }, 1500);
+});
 </script>
 </body>
 </html>
