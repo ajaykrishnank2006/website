@@ -1768,6 +1768,28 @@ html.dark-mode .skill-badge { opacity:1 !important; transform:none !important; }
 .reveal-section,.reveal-section.active { opacity:1 !important; visibility:visible !important; transform:none !important; }
 .motion-ready .motion-item { opacity:1 !important; transform:none !important; }
 
+
+/* Reliable dark mode + animation visibility fixes */
+html.dark-mode body,
+html.dark-mode section:not(.hero-sec),
+html.dark-mode .reveal-section { background-color:#07121b !important; color:#f1f7f9 !important; }
+html.dark-mode section:nth-of-type(even):not(.hero-sec) { background-color:#0b1721 !important; }
+html.dark-mode .skills-category,
+html.dark-mode .focus-card,
+html.dark-mode .project-card,
+html.dark-mode .edu-content,
+html.dark-mode .contact-card,
+html.dark-mode .contact-form,
+html.dark-mode .exp-content { background:#0d1b26 !important; color:#f1f7f9 !important; border-color:rgba(180,215,229,.2) !important; }
+html.dark-mode .skills-cat-title,
+html.dark-mode .skills-category h3,
+html.dark-mode .focus-card h3,
+html.dark-mode .project-card h3,
+html.dark-mode .edu-title,
+html.dark-mode .contact-card h3 { color:#f1f7f9 !important; }
+html.dark-mode .skill-badge { background:#111f2c !important; color:#dbeaf0 !important; border-color:rgba(64,217,244,.22) !important; }
+.skill-badge { opacity:1; }
+
 </style>
 </head>
 <body>
@@ -2878,6 +2900,68 @@ document.addEventListener('DOMContentLoaded', () => {
     el.style.visibility = 'visible';
     el.style.transform = 'none';
   });
+})();
+</script>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const buttons = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')].filter(Boolean);
+  function setTheme(dark) {
+    root.classList.toggle('dark-mode', dark);
+    root.style.colorScheme = dark ? 'dark' : 'light';
+    buttons.forEach(btn => {
+      btn.setAttribute('aria-pressed', String(dark));
+      btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+    });
+  }
+  let saved = null;
+  try { saved = localStorage.getItem('theme'); } catch(e) {}
+  setTheme(saved ? saved === 'dark' : false);
+  buttons.forEach(btn => btn.addEventListener('click', () => {
+    const dark = !root.classList.contains('dark-mode');
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch(e) {}
+    setTheme(dark);
+  }));
+
+  const typed = document.getElementById('typewriter');
+  const roles = ['Machine Learning Systems.', 'Flutter Mobile Apps.'];
+  if (typed && !window.__portfolioTypewriterStarted) {
+    window.__portfolioTypewriterStarted = true;
+    let role = 0, pos = 0, deleting = false;
+    function tick() {
+      const word = roles[role];
+      typed.textContent = word.slice(0, pos);
+      if (!deleting && pos < word.length) pos++;
+      else if (!deleting) { deleting = true; setTimeout(tick, 1700); return; }
+      else if (pos > 0) pos--;
+      else { deleting = false; role = (role + 1) % roles.length; }
+      setTimeout(tick, deleting ? 42 : 105);
+    }
+    typed.textContent = '';
+    tick();
+  }
+
+  // Keep all badges visible and progressively reveal cards on scroll.
+  document.querySelectorAll('.skill-badge').forEach((el, i) => {
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+    el.style.transitionDelay = (i % 8) * 45 + 'ms';
+  });
+  const targets = document.querySelectorAll('.skills-category, .focus-card, .project-card, .edu-content, .contact-card, .contact-form, .exp-content');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.animate(
+          [{opacity:0.65, transform:'translateY(18px)'},{opacity:1, transform:'translateY(0)'}],
+          {duration:550, easing:'cubic-bezier(.2,.7,.2,1)'}
+        );
+        observer.unobserve(entry.target);
+      }
+    }), {threshold:.08});
+    targets.forEach(el => observer.observe(el));
+  }
 })();
 </script>
 </body>
