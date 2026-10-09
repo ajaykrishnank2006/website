@@ -2072,6 +2072,145 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
     }
 
+
+    /* Theme-aware surfaces: the theme toggle must change the whole page */
+    html:not(.dark-mode) body,
+    html:not(.dark-mode) section:not(.hero-sec),
+    html:not(.dark-mode) footer {
+      background: #f2f6f5 !important;
+      color: #12232d !important;
+    }
+    html:not(.dark-mode) header,
+    html:not(.dark-mode) header.scrolled {
+      background: rgba(244,248,247,.92) !important;
+      border-bottom-color: rgba(16,39,51,.14) !important;
+    }
+    html:not(.dark-mode) .logo,
+    html:not(.dark-mode) .section-title,
+    html:not(.dark-mode) .section-title h2,
+    html:not(.dark-mode) .focus-card h3,
+    html:not(.dark-mode) .project-card h3,
+    html:not(.dark-mode) .skills-category h3,
+    html:not(.dark-mode) .edu-title,
+    html:not(.dark-mode) .contact-card h3 {
+      color: #10232e !important;
+      -webkit-text-fill-color: #10232e !important;
+    }
+    html:not(.dark-mode) .nav-link { color: #40525e !important; }
+    html:not(.dark-mode) .nav-link:hover,
+    html:not(.dark-mode) .nav-link.active { color: #007f9d !important; }
+    html:not(.dark-mode) .hero-sec {
+      background: radial-gradient(ellipse at 78% 35%, rgba(0,164,208,.12), transparent 40%), #f2f6f5 !important;
+    }
+    html:not(.dark-mode) .hero-title,
+    html:not(.dark-mode) .hero-title span {
+      color: #10232e !important;
+      -webkit-text-fill-color: #10232e !important;
+    }
+    html:not(.dark-mode) .hero-role { color: #344b58 !important; }
+    html:not(.dark-mode) .hero-desc,
+    html:not(.dark-mode) .section-subtitle,
+    html:not(.dark-mode) .section-description,
+    html:not(.dark-mode) .focus-card p,
+    html:not(.dark-mode) .project-card p,
+    html:not(.dark-mode) .edu-desc,
+    html:not(.dark-mode) .contact-card p,
+    html:not(.dark-mode) .skills-category p {
+      color: #526570 !important;
+    }
+    html:not(.dark-mode) .focus-card,
+    html:not(.dark-mode) .project-card,
+    html:not(.dark-mode) .skills-category,
+    html:not(.dark-mode) .edu-content,
+    html:not(.dark-mode) .contact-card,
+    html:not(.dark-mode) .contact-form,
+    html:not(.dark-mode) .exp-content {
+      background: #ffffff !important;
+      color: #142631 !important;
+      border-color: #d5e0e2 !important;
+      box-shadow: 0 12px 34px rgba(17,43,55,.07) !important;
+    }
+    html:not(.dark-mode) .theme-toggle,
+    html:not(.dark-mode) .hamburger {
+      background: #ffffff !important;
+      color: #132a36 !important;
+      border-color: #d5e0e2 !important;
+    }
+    html:not(.dark-mode) .nav-drawer {
+      background: #f4f8f7 !important;
+      border-color: #d5e0e2 !important;
+    }
+    html:not(.dark-mode) .nav-drawer a { color: #142631 !important; }
+    html:not(.dark-mode) .form-control,
+    html:not(.dark-mode) input,
+    html:not(.dark-mode) textarea,
+    html:not(.dark-mode) select {
+      color: #142631 !important;
+      background: #f9fbfb !important;
+      border-color: #cbd9dd !important;
+    }
+    html:not(.dark-mode) footer,
+    html:not(.dark-mode) footer p { color: #536570 !important; }
+    html:not(.dark-mode) #education { background: #e8efee !important; }
+    html:not(.dark-mode) #education .edu-content { background: #fff !important; }
+
+    /* Animated technical backdrop */
+    .ambient-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .58;
+    }
+    .hero-content { z-index: 2; }
+    .hero-orb {
+      position: absolute;
+      width: clamp(240px, 34vw, 520px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      right: -7%;
+      top: 8%;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(circle, rgba(37,197,230,.13), rgba(37,197,230,.035) 40%, transparent 70%);
+      animation: orb-drift 13s ease-in-out infinite alternate;
+    }
+    @keyframes orb-drift {
+      from { transform: translate3d(0,-2%,0) scale(.96); }
+      to { transform: translate3d(-8%,7%,0) scale(1.08); }
+    }
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 0%;
+      height: 3px;
+      background: #40d9f4;
+      z-index: 9999;
+      box-shadow: 0 0 14px rgba(64,217,244,.55);
+      pointer-events: none;
+    }
+    .reveal-ready .reveal-item {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+      transition-delay: var(--reveal-delay, 0ms);
+    }
+    .reveal-ready .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-ready .reveal-item.reveal-left { transform: translateX(-26px); }
+    .reveal-ready .reveal-item.reveal-right { transform: translateX(26px); }
+    .reveal-ready .reveal-item.reveal-left.is-visible,
+    .reveal-ready .reveal-item.reveal-right.is-visible { transform: translate(0); }
+    .focus-card, .project-card, .skills-category, .edu-content, .contact-card { will-change: transform; }
+    @media (prefers-reduced-motion: reduce) {
+      .ambient-canvas, .hero-orb { display: none !important; animation: none !important; }
+      .reveal-ready .reveal-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
 </style>
 </head>
 <body>
@@ -2792,7 +2931,141 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
          G. SECTION REVEAL (INTERSECTION OBSERVER)
          ------------------------------------------ */
       const revealSections = document.querySelectorAll(".reveal-section");
-      if (revealSections.length > 0) {
+      if (revealS
+<script>
+(() => {
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Keep the selected theme consistent across the desktop and mobile toggles.
+  const themeButtons = [
+    document.getElementById('theme-toggle'),
+    document.getElementById('theme-toggle-mobile')
+  ].filter(Boolean);
+  function syncThemeButtonState() {
+    const isDark = root.classList.contains('dark-mode');
+    themeButtons.forEach(button => {
+      button.setAttribute('aria-pressed', String(isDark));
+      button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      button.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+  }
+  themeButtons.forEach(button => button.addEventListener('click', () => {
+    window.setTimeout(syncThemeButtonState, 0);
+  }));
+  syncThemeButtonState();
+
+  // Scroll progress indicator.
+  const progress = document.createElement('div');
+  progress.className = 'scroll-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(progress);
+  let scrollTicking = false;
+  function updateScrollProgress() {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const percent = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+    progress.style.width = percent + '%';
+    scrollTicking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(updateScrollProgress);
+      scrollTicking = true;
+    }
+  }, { passive: true });
+  updateScrollProgress();
+
+  // Reveal section content as it enters the viewport.
+  const revealTargets = document.querySelectorAll(
+    'section:not(.hero-sec) .section-title-wrap, section:not(.hero-sec) .section-title, .focus-card, .project-card, .skills-category, .edu-content, .contact-card, .contact-form, .exp-content'
+  );
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    root.classList.add('reveal-ready');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -35px 0px' });
+    revealTargets.forEach((el, index) => {
+      el.classList.add('reveal-item');
+      el.style.setProperty('--reveal-delay', (index % 4) * 75 + 'ms');
+      observer.observe(el);
+    });
+  }
+
+  // Lightweight animated particles and connecting lines in the hero only.
+  const hero = document.querySelector('.hero-sec');
+  if (hero && !reducedMotion && window.matchMedia('(min-width: 600px)').matches) {
+    const canvas = document.createElement('canvas');
+    canvas.className = 'ambient-canvas';
+    canvas.setAttribute('aria-hidden', 'true');
+    hero.prepend(canvas);
+    const ctx = canvas.getContext('2d');
+    if (ctx) {
+      let width = 0, height = 0, particles = [], frame = 0;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      function resize() {
+        width = hero.clientWidth;
+        height = hero.clientHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const count = Math.min(64, Math.max(24, Math.floor(width / 20)));
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * width, y: Math.random() * height,
+          vx: (Math.random() - .5) * .24, vy: (Math.random() - .5) * .24,
+          r: Math.random() * 1.5 + .5
+        }));
+      }
+      function draw() {
+        if (document.hidden) { frame = requestAnimationFrame(draw); return; }
+        ctx.clearRect(0, 0, width, height);
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > width) p.vx *= -1;
+          if (p.y < 0 || p.y > height) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(64,217,244,.62)';
+          ctx.fill();
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j], dx = p.x - q.x, dy = p.y - q.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 105) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = 'rgba(64,217,244,' + (1 - distance / 105) * .12 + ')';
+              ctx.lineWidth = .7;
+              ctx.stroke();
+            }
+          }
+        }
+        frame = requestAnimationFrame(draw);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) cancelAnimationFrame(frame);
+        else frame = requestAnimationFrame(draw);
+      });
+      frame = requestAnimationFrame(draw);
+    }
+  } else if (hero) {
+    const orb = document.createElement('div');
+    orb.className = 'hero-orb';
+    orb.setAttribute('aria-hidden', 'true');
+    hero.prepend(orb);
+  }
+})();
+</script>
+
+ections.length > 0) {
         const sectionObserver = new IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
