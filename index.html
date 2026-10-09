@@ -1747,6 +1747,27 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
   transform: none !important;
 }
 
+
+/* Final theme override with stronger specificity */
+html.dark-mode body,
+html.dark-mode section,
+html.dark-mode section:not(.hero-sec),
+html.dark-mode section:nth-of-type(even):not(.hero-sec) { background:#07121b !important; color:#f1f7f9 !important; }
+html.dark-mode .hero-sec { background:radial-gradient(ellipse at 78% 36%,rgba(19,198,232,.14),transparent 40%),#07121b !important; }
+html.dark-mode header, html.dark-mode header.scrolled { background:rgba(7,18,27,.96) !important; }
+html.dark-mode .section-title,html.dark-mode .section-title h2,html.dark-mode section h2,html.dark-mode .hero-title { color:#f1f7f9 !important; -webkit-text-fill-color:#f1f7f9 !important; }
+html.dark-mode .focus-card,html.dark-mode .project-card,html.dark-mode .skills-category,html.dark-mode .edu-content,html.dark-mode .contact-card,html.dark-mode .contact-form,html.dark-mode .exp-content { background:#0d1b26 !important; color:#f1f7f9 !important; border-color:rgba(180,215,229,.2) !important; }
+html.dark-mode .focus-card h3,html.dark-mode .project-card h3,html.dark-mode .skills-category h3,html.dark-mode .edu-title,html.dark-mode .contact-card h3,html.dark-mode .exp-content h3 { color:#f1f7f9 !important; }
+html.dark-mode .focus-card p,html.dark-mode .project-card p,html.dark-mode .edu-desc,html.dark-mode .contact-card p,html.dark-mode .exp-content p,html.dark-mode .skills-category p { color:#a5b6c0 !important; }
+html.dark-mode .nav-link,html.dark-mode .logo { color:#e9f3f6 !important; }
+html.dark-mode .theme-toggle,html.dark-mode .hamburger { background:#0d1b26 !important; color:#e9f3f6 !important; border-color:rgba(180,215,229,.22) !important; }
+html.dark-mode #education,html.dark-mode footer { background:#050d13 !important; color:#f1f7f9 !important; }
+html.dark-mode #education .edu-content { background:#0d1b26 !important; }
+html.dark-mode .skill-badge { opacity:1 !important; transform:none !important; }
+.skill-badge { opacity:1 !important; transform:none !important; }
+.reveal-section,.reveal-section.active { opacity:1 !important; visibility:visible !important; transform:none !important; }
+.motion-ready .motion-item { opacity:1 !important; transform:none !important; }
+
 </style>
 </head>
 <body>
@@ -2828,6 +2849,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!typed.textContent.trim()) typed.textContent = 'Machine Learning Systems.';
   }, 1500);
 });
+</script>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const buttons = [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')].filter(Boolean);
+  function applyTheme(dark) {
+    root.classList.toggle('dark-mode', dark);
+    root.style.colorScheme = dark ? 'dark' : 'light';
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch (_) {}
+    buttons.forEach(button => {
+      button.setAttribute('aria-pressed', String(dark));
+      button.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      button.setAttribute('title', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+  }
+  let initial = false;
+  try { initial = localStorage.getItem('theme') === 'dark'; } catch (_) {}
+  applyTheme(initial);
+  buttons.forEach(button => button.addEventListener('click', event => {
+    event.preventDefault();
+    applyTheme(!root.classList.contains('dark-mode'));
+  }));
+  // Keep scroll-reveal content visible even if a legacy observer fails.
+  document.querySelectorAll('.skill-badge,.reveal-section,.motion-item').forEach(el => {
+    el.style.opacity = '1';
+    el.style.visibility = 'visible';
+    el.style.transform = 'none';
+  });
+})();
 </script>
 </body>
 </html>
