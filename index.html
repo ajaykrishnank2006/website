@@ -1734,6 +1734,19 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
   #home .hero-title { font-size: clamp(38px, 10vw, 62px) !important; overflow-wrap: anywhere; }
 }
 
+
+/* Critical fallback: content must remain visible if an observer fails */
+.reveal-section {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+.reveal-section.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
 </style>
 </head>
 <body>
