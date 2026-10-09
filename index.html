@@ -2211,6 +2211,44 @@ input:focus,textarea:focus,select:focus{border-color:#E8A06F!important;box-shado
       .reveal-ready .reveal-item { opacity: 1 !important; transform: none !important; transition: none !important; }
     }
 
+
+    /* Hotfix: ensure hero content and light-mode headings never disappear */
+    .hero-sec .hero-content,
+    .hero-sec .hero-content > *,
+    .hero-sec .hero-title,
+    .hero-sec .hero-tag,
+    .hero-sec .hero-role,
+    .hero-sec .hero-desc,
+    .hero-sec .hero-buttons,
+    .hero-sec .hero-socials {
+      opacity: 1 !important;
+      visibility: visible !important;
+      animation: none !important;
+    }
+    .hero-sec .hero-title {
+      color: #f5f8fa !important;
+      -webkit-text-fill-color: #f5f8fa !important;
+      background: none !important;
+      text-shadow: none !important;
+    }
+    html:not(.dark-mode) .hero-sec .hero-title {
+      color: #10232e !important;
+      -webkit-text-fill-color: #10232e !important;
+    }
+    html:not(.dark-mode) .hero-sec .hero-tag { color: #007f9d !important; }
+    html:not(.dark-mode) .hero-sec .hero-role { color: #344b58 !important; }
+    html:not(.dark-mode) .hero-sec .hero-desc { color: #526570 !important; }
+    .section-title, .section-title h2, section h2 {
+      text-shadow: none !important;
+    }
+    html:not(.dark-mode) section:not(.hero-sec) .section-title,
+    html:not(.dark-mode) section:not(.hero-sec) .section-title h2,
+    html:not(.dark-mode) section:not(.hero-sec) h2 {
+      color: #10232e !important;
+      -webkit-text-fill-color: #10232e !important;
+    }
+    #scroll-progress { background: #40d9f4 !important; }
+
 </style>
 </head>
 <body>
